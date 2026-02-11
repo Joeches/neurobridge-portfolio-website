@@ -52,7 +52,7 @@
       "jobTitle": "Founder & CTO | Senior Quantum-Kernel Systems Designer & Generative AI-Quantum Integrator",
       "url": window.location.href,
       "sameAs": [
-        "https://www.linkedin.com/in/[your-linkedin-username]", // ← replace
+        "www.linkedin.com/in/joseph-ochelebe-15a09588", // ← replace
         "https://x.com/[your-x-handle]" // ← optional
       ],
       "address": {
@@ -63,8 +63,8 @@
       "worksFor": {
         "@type": "Organization",
         "name": "NeuroBridge Technologies Ltd",
-        "url": "https://[your-domain]/",
-        "logo": "/statics/icons/icon-512.png"
+        "url": "https://neurobridgetechnology.netlify.app//",
+        "logo": "/icons/logo-neurobridge.png","
       },
       "knowsAbout": [
         "Quantum Computing", "Quantum Algorithms", "Generative AI", "VQE Simulation", "Topological Quantum Systems", "Google Gemini API"
