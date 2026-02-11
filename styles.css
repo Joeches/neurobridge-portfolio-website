@@ -1,0 +1,241 @@
+/* =====================================================================
+   NeuroBridge Quantum Portfolio - Enhanced Styles 2026 v2
+   Professional Futuristic Quantum-Kernel Designer Aesthetic
+   Optimized for performance, accessibility & visual impact
+   Author: Joseph Ochelebe | Founder & CTO - NeuroBridge Technologies Ltd
+   ===================================================================== */
+
+:root {
+  --quantum-cyan:    #00f0ff;
+  --quantum-magenta: #ff00aa;
+  --quantum-purple:  #9d00ff;
+  --quantum-blue:    #00aaff;
+  --bg-dark:         #0a001f;
+  --bg-darker:       #050014;
+  --text-light:      #e0e0ff;
+  --text-muted:      #a0a0cc;
+  --glow-cyan:       0 0 15px var(--quantum-cyan), 0 0 35px var(--quantum-cyan);
+  --glow-mag:        0 0 15px var(--quantum-magenta), 0 0 35px var(--quantum-magenta);
+  --glow-purple:     0 0 15px var(--quantum-purple),  0 0 35px var(--quantum-purple);
+  --transition:      all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Respect user prefers-reduced-motion setting */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Global Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(145deg, var(--bg-dark) 0%, #12003a 50%, #1a004d 100%);
+  color: var(--text-light);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Quantum particle overlay (fallback if canvas fails) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 15% 25%, rgba(0,240,255,0.07) 0%, transparent 60%),
+              radial-gradient(circle at 85% 75%, rgba(157,0,255,0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -2;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron', system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.neon-text {
+  color: var(--quantum-cyan);
+  text-shadow: var(--glow-cyan);
+  animation: neon-pulse 6s ease-in-out infinite alternate;
+}
+
+.glitch {
+  position: relative;
+  color: var(--quantum-cyan);
+  text-shadow: var(--glow-cyan);
+  animation: glitch-skew 4s infinite linear alternate-reverse;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0.85;
+  clip-path: inset(0 0 0 0);
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 var(--quantum-magenta);
+  animation: glitch-anim1 3.5s infinite steps(5);
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: 2px 0 var(--quantum-blue);
+  animation: glitch-anim2 2.8s infinite steps(5);
+}
+
+/* Animations */
+@keyframes neon-pulse {
+  0%, 100% { text-shadow: var(--glow-cyan); opacity: 1; }
+  50%      { text-shadow: 0 0 25px var(--quantum-cyan), 0 0 60px var(--quantum-cyan); opacity: 0.95; }
+}
+
+@keyframes glitch-anim1 {
+  0%   { clip: rect(42px, 9999px, 44px, 0); transform: skew(0.6deg); }
+  5%   { clip: rect(17px, 9999px, 59px, 0); transform: skew(0.9deg); }
+  10%  { clip: rect(63px, 9999px, 104px, 0); transform: skew(-0.4deg); }
+  /* ... truncated for brevity – add more random keyframes in production ... */
+  100% { clip: rect(0, 9999px, 0, 0); transform: skew(0deg); }
+}
+
+@keyframes glitch-anim2 {
+  0%   { clip: rect(65px, 9999px, 119px, 0); transform: skew(-0.2deg); }
+  /* ... more steps ... */
+  100% { clip: rect(0, 9999px, 0, 0); transform: skew(0deg); }
+}
+
+@keyframes glitch-skew {
+  0%, 100% { transform: skew(0deg); }
+  10%, 90% { transform: skew(0.5deg); }
+}
+
+/* Buttons – Futuristic enhanced */
+.btn-cyan {
+  background: linear-gradient(90deg, var(--quantum-cyan), var(--quantum-blue));
+  color: #000;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: none;
+  box-shadow: var(--glow-cyan);
+  transition: var(--transition);
+}
+
+.btn-cyan:hover,
+.btn-cyan:focus {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 0 30px var(--quantum-cyan), 0 15px 40px rgba(0,240,255,0.4);
+}
+
+.btn-outline-magenta {
+  border-color: var(--quantum-magenta);
+  color: var(--quantum-magenta);
+  box-shadow: var(--glow-mag);
+  transition: var(--transition);
+}
+
+.btn-outline-magenta:hover,
+.btn-outline-magenta:focus {
+  background: var(--quantum-magenta);
+  color: #000;
+  box-shadow: 0 0 30px var(--quantum-magenta);
+}
+
+/* Cards – Holographic depth & shimmer */
+.card {
+  background: linear-gradient(135deg, rgba(20,10,60,0.55), rgba(10,0,40,0.45));
+  border: 1px solid rgba(0,240,255,0.35);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  transition: var(--transition);
+  overflow: hidden;
+  position: relative;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, transparent, rgba(0,240,255,0.08), transparent);
+  opacity: 0;
+  transition: opacity 0.6s;
+  pointer-events: none;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-12px) rotateX(4deg) rotateY(4deg);
+  box-shadow: var(--glow-cyan), 0 30px 60px rgba(0,0,0,0.5);
+  border-color: var(--quantum-magenta);
+}
+
+/* Logo glow */
+.logo-glow {
+  filter: grayscale(70%) brightness(0.9);
+  transition: all 0.5s ease;
+}
+
+.logo-glow:hover {
+  filter: grayscale(0%) brightness(1.3) drop-shadow(0 0 15px var(--quantum-cyan));
+  transform: scale(1.12);
+}
+
+/* Hero */
+.bg-gradient-hero {
+  background: linear-gradient(to bottom, rgba(10,0,31,0.92), rgba(26,0,77,0.8)),
+              radial-gradient(circle at 30% 20%, rgba(0,240,255,0.12), transparent 70%);
+}
+
+/* Focus states for accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--quantum-cyan);
+  outline-offset: 4px;
+}
+
+/* Responsive typography */
+@media (max-width: 992px) {
+  .display-2 { font-size: 3.8rem; }
+  .display-3 { font-size: 3.2rem; }
+}
+
+@media (max-width: 576px) {
+  .display-2 { font-size: 2.8rem; letter-spacing: 1px; }
+  .lead { font-size: 1.2rem; }
+}
+
+/* Shimmer loading effect (add class .shimmer to cards if needed) */
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  animation: shimmer 2.5s infinite;
+}
+
+@keyframes shimmer {
+  0%   { left: -100%; }
+  100% { left: 200%; }
+}
