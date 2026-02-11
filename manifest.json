@@ -3,7 +3,7 @@
   "name": "NeuroBridge Technologies | Quantum-Kernel Systems Portfolio",
   "short_name": "NeuroBridge Quantum",
   "description": "Futuristic portfolio of Joseph Ochelebe – Founder & CTO | Quantum algorithm kernels, hybrid simulation platforms, generative AI synergies | Building scalable deep-tech innovation from Abuja, Nigeria",
-  "start_url": "/templates/index.html",
+  "start_url": "/",
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
   "orientation": "any",
@@ -11,20 +11,20 @@
   "theme_color": "#00f0ff",
   "icons": [
     {
-      "src": "/statics/icons/icon-192.png",
+      "src": "/icons/logo-neurobridge.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/statics/icons/icon-512.png",
+      "src": "/icons/logo-neurobridge.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ],
   "scope": "/",
-  "id": "/templates/index.html",
+  "id": "/",
   "categories": ["science", "technology", "productivity", "education"],
   "dir": "ltr",
   "lang": "en",
@@ -34,27 +34,27 @@
       "name": "Portfolio Dashboard",
       "short_name": "Dashboard",
       "description": "Deep-dive into quantum MVPs and kernel innovations",
-      "url": "/templates/projects-dashboard.html",
-      "icons": [{ "src": "/statics/icons/icon-192.png", "sizes": "192x192" }]
+      "url": "/projects-dashboard.html",
+      "icons": [{ "src": "/icons/logo-neurobridge.png", "sizes": "192x192" }]
     },
     {
       "name": "Chat with CTO",
       "short_name": "Contact",
       "description": "Direct WhatsApp enquiry",
       "url": "https://wa.me/2348155935110?text=Hello%20CTO%2C%20from%20PWA",
-      "icons": [{ "src": "/statics/icons/icon-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/icons/logo-neurobridge.png", "sizes": "192x192" }]
     }
   ],
   "screenshots": [
     {
-      "src": "/statics/screenshots/screenshot1.png",
+      "src": "/screenshots/screenshot1.png",
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
       "label": "Quantum Portfolio Landing"
     },
     {
-      "src": "/statics/screenshots/screenshot2.png",
+      "src": "/screenshots/screenshot2.png",
       "sizes": "750x1334",
       "type": "image/png",
       "form_factor": "narrow",
