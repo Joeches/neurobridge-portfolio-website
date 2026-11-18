@@ -1,273 +1,1139 @@
+
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Joseph Ochelebe – Senior Quantum-Kernel Systems Designer | Founder & CTO NeuroBridge Technologies Ltd | Quantum Simulation + Generative AI Platforms">
-  <meta name="keywords" content="Quantum Computing, Generative AI, NeuroBridge Technologies, Joseph Ochelebe, Quantum Kernels, AI Integration">
+
+  <title>Joseph Ochelebe | Software Engineer & AI Systems Architect</title>
+
+  <meta name="description" content="Joseph Ochelebe is a software engineer building AI infrastructure, autonomous systems, distributed platforms and intelligent software applications.">
+  <meta name="keywords" content="Joseph Ochelebe, Software Engineer, Python Developer, AI Systems Architect, Backend Engineer, Distributed Systems, Cloud Engineering, Robotics, NeuroBridge, AgentShield">
   <meta name="author" content="Joseph Ochelebe">
-  <meta property="og:title" content="Joseph Ochelebe | Quantum-Kernel Architect & Founder – NeuroBridge">
-  <meta property="og:description" content="Founder & CTO of NeuroBridge Technologies Ltd, specializing in quantum kernels and generative AI platforms.">
-  <meta property="og:image" content="/logo-neurobridge-main.png">
-  <meta property="og:url" content="https://yourwebsite.com">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0b1220">
+
+  <link rel="canonical" href="https://neurobridge-portfolio-website.netlify.app/">
+
+  <meta property="og:title" content="Joseph Ochelebe | Software Engineer & AI Systems Architect">
+  <meta property="og:description" content="Engineering intelligent software systems, AI infrastructure and autonomous applications. Explore selected engineering projects and technical work.">
+  <meta property="og:image" content="https://neurobridge-portfolio-website.netlify.app/logo-neurobridge-main.png">
+  <meta property="og:url" content="https://neurobridge-portfolio-website.netlify.app/">
   <meta property="og:type" content="website">
+
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Joseph Ochelebe | Quantum-Kernel Architect & Founder – NeuroBridge">
-  <meta name="twitter:description" content="Founder & CTO of NeuroBridge Technologies Ltd, specializing in quantum kernels and generative AI platforms.">
-  <meta name="twitter:image" content="/logo-neurobridge-main.png">
-  <meta name="theme-color" content="#00FFFF">
-  <title>Joseph Ochelebe | Quantum-Kernel Architect & Founder – NeuroBridge</title>
-  <!-- Favicon using the same NeuroBridge logo PNG -->
-  <link rel="icon" type="image/png" sizes="any" href="/logo-neurobridge-main.png">
+  <meta name="twitter:title" content="Joseph Ochelebe | Software Engineer">
+  <meta name="twitter:description" content="Software engineering, AI infrastructure, autonomous systems and distributed platforms.">
+  <meta name="twitter:image" content="https://neurobridge-portfolio-website.netlify.app/logo-neurobridge-main.png">
+
+  <link rel="icon" type="image/png" href="/logo-neurobridge-main.png">
   <link rel="apple-touch-icon" href="/logo-neurobridge-main.png">
-  <!-- Google Fonts: Orbitron futuristic -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <!-- Bootstrap 5.3 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <!-- Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <!-- Manifest & PWA -->
+
   <link rel="manifest" href="/statics/manifest.json">
-  <!-- Custom Styles -->
   <link rel="stylesheet" href="/statics/styles.css">
+
+  <style>
+    :root {
+      --bg: #0b1220;
+      --surface: #111c2e;
+      --surface-light: #17243a;
+      --accent: #42d9e8;
+      --accent-soft: rgba(66, 217, 232, 0.12);
+      --text: #e8eef7;
+      --muted: #9aabc0;
+      --border: rgba(148, 163, 184, 0.17);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.75;
+    }
+
+    h1, h2, h3, h4, h5, .navbar-brand {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .navbar {
+      background: rgba(11, 18, 32, 0.94) !important;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+    }
+
+    .navbar-brand {
+      letter-spacing: -0.5px;
+    }
+
+    .navbar-brand img {
+      height: 36px;
+      width: auto;
+    }
+
+    .nav-link {
+      color: #bdc9d8 !important;
+      font-weight: 500;
+      font-size: 0.92rem;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--accent) !important;
+    }
+
+    .hero {
+      min-height: 760px;
+      padding: 150px 0 110px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 80% 25%, rgba(22, 119, 145, 0.18), transparent 45%),
+        radial-gradient(ellipse at 15% 80%, rgba(40, 78, 135, 0.16), transparent 45%),
+        var(--bg);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 55px 55px;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.3rem);
+      font-weight: 700;
+      letter-spacing: -3px;
+      line-height: 1.08;
+      margin: 20px 0;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #42d9e8, #91bfff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 1.15rem;
+    }
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-dark {
+      background: #080e19;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #06131d;
+      border: 1px solid var(--accent);
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: 7px;
+    }
+
+    .btn-accent:hover {
+      background: #91eff5;
+      color: #06131d;
+    }
+
+    .btn-outline-accent {
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 7px;
+    }
+
+    .btn-outline-accent:hover {
+      background: var(--accent-soft);
+      color: #fff;
+    }
+
+    .info-card,
+    .project-card,
+    .skill-card,
+    .evidence-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      height: 100%;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .info-card:hover,
+    .project-card:hover,
+    .skill-card:hover,
+    .evidence-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(66, 217, 232, 0.6);
+    }
+
+    .project-card {
+      overflow: hidden;
+    }
+
+    .project-top {
+      padding: 30px;
+      background: linear-gradient(135deg, #152a42, #101b2c);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-body {
+      padding: 28px;
+    }
+
+    .project-label {
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .project-icon {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      background: var(--accent-soft);
+      border-radius: 12px;
+      color: var(--accent);
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .tech-tag {
+      display: inline-block;
+      background: rgba(148, 163, 184, 0.10);
+      border: 1px solid var(--border);
+      color: #c4d2e1;
+      padding: 5px 10px;
+      margin: 4px 3px 4px 0;
+      border-radius: 5px;
+      font-size: 0.77rem;
+    }
+
+    .skill-card,
+    .evidence-card {
+      padding: 25px;
+    }
+
+    .skill-card i,
+    .evidence-card i {
+      color: var(--accent);
+      font-size: 1.65rem;
+      margin-bottom: 18px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .timeline-item {
+      border-left: 2px solid var(--accent);
+      padding: 5px 0 25px 25px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -7px;
+      top: 9px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .contact-panel {
+      background: linear-gradient(135deg, #14263b, #0f1b2c);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 55px 30px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      background: #070c15;
+    }
+
+    footer a {
+      color: var(--muted);
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+
+    .social-link {
+      width: 44px;
+      height: 44px;
+      display: inline-grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--accent);
+      font-size: 1.15rem;
+    }
+
+    .social-link:hover {
+      background: var(--accent-soft);
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      z-index: 1000;
+      width: 55px;
+      height: 55px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      font-size: 1.5rem;
+    }
+
+    #back-to-top {
+      display: none;
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 999;
+      width: 45px;
+      height: 45px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #06131d;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        min-height: auto;
+        padding: 140px 0 90px;
+        text-align: center;
+      }
+
+      .hero h1 {
+        letter-spacing: -1.5px;
+      }
+
+      .section {
+        padding: 75px 0;
+      }
+
+      .hero-description {
+        font-size: 1rem;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Joseph Ochelebe",
+    "url": "https://neurobridge-portfolio-website.netlify.app/",
+    "jobTitle": "Software Engineer and AI Systems Architect",
+    "sameAs": [
+      "https://www.linkedin.com/in/joseph-ochelebe-15a09588",
+      "https://github.com/Joeches"
+    ],
+    "knowsAbout": [
+      "Python Software Engineering",
+      "Backend Development",
+      "Artificial Intelligence",
+      "Distributed Systems",
+      "Cloud Engineering",
+      "Autonomous Systems",
+      "Robotics",
+      "Machine Learning"
+    ]
+  }
+  </script>
 </head>
+
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-black shadow-lg fixed-top">
+
+  <!-- NAVIGATION -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand fw-bold fs-4 neon-text d-flex align-items-center" href="/templates/index.html">
-        <img src="/logo-neurobridge-main.png" alt="NeuroBridge Logo" class="me-2" style="height: 40px;">
-        NEURO<span class="text-cyan">BRIDGE</span>
+
+      <a class="navbar-brand fw-bold d-flex align-items-center" href="#home">
+        <img src="/logo-neurobridge-main.png" alt="NeuroBridge logo" class="me-2">
+        JOSEPH <span class="accent ms-1">OCHELEBE</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+      <button class="navbar-toggler" type="button"
+        data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false"
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto align-items-center">
-          <li class="nav-item"><a class="nav-link" href="#projects">Portfolio</a></li>
-          <li class="nav-item"><a class="nav-link" href="#pitch">Pitch</a></li>
-          <li class="nav-item"><a class="nav-link" href="#tools">Tools</a></li>
-          <li class="nav-item ms-3">
-            <a class="btn btn-outline-cyan px-4" href="/templates/projects-dashboard.html">Dashboard</a>
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#expertise">Expertise</a></li>
+          <li class="nav-item"><a class="nav-link" href="#evidence">Engineering</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+          <li class="nav-item">
+            <a class="btn btn-outline-accent btn-sm ms-lg-2" href="#contact">Contact</a>
           </li>
         </ul>
       </div>
+
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <header class="vh-100 d-flex align-items-center text-center bg-gradient-hero position-relative overflow-hidden">
-    <div class="container position-relative z-2">
-      <h1 class="display-2 fw-bold glitch neon-text mb-3" data-text="Joseph Ochelebe">Joseph Ochelebe</h1>
-      <p class="lead fs-3 text-cyan">Founder & CTO | Senior Quantum-Kernel Systems Designer & Generative AI-Quantum Integrator</p>
-      <p class="fs-5 opacity-75 mb-5">NeuroBridge Technologies Ltd • Abuja, Nigeria • 11+ Years Quantum Innovation</p>
-      <div class="d-flex justify-content-center gap-3 flex-wrap">
-        <a href="https://www.linkedin.com/in/joseph-ochelebe-15a09588" target="_blank" class="btn btn-lg btn-outline-cyan px-5 py-3" aria-label="LinkedIn Profile">
-          <i class="fab fa-linkedin me-2"></i> LinkedIn
-        </a>
-        <a href="https://docs.google.com/document/d/1WpwpjZwpjd5jXYfWuSjYpU0Dgcwr05dh4Na5K1LeAbc/edit?usp=sharing" target="_blank" class="btn btn-lg btn-cyan px-5 py-3 shadow" aria-label="Download Resume">
-          <i class="fas fa-file-alt me-2"></i> Resume
-        </a>
-        <a href="https://docs.google.com/document/d/1J_eslximKqLiFcF70oi7SA9_z1AblIr8zz9FXhE33jo/edit?usp=sharing" target="_blank" class="btn btn-lg btn-outline-light px-5 py-3" aria-label="View Cover Letter">
-          <i class="fas fa-envelope me-2"></i> Cover Letter
-        </a>
-        <a href="https://wa.me/2348155935110?text=Hello%20Joseph%2C%20quantum%20collaboration%20interest" class="btn btn-success btn-lg px-5 py-3">
-          <i class="fab fa-whatsapp me-2"></i> Chat CTO
-        </a>
+  <!-- HERO -->
+  <header id="home" class="hero">
+    <div class="container hero-content">
+
+      <div class="eyebrow">
+        SOFTWARE ENGINEERING · AI SYSTEMS · PLATFORM ARCHITECTURE
       </div>
+
+      <h1>
+        Joseph <span class="gradient-text">Ochelebe</span>
+      </h1>
+
+      <h2 class="h3 mb-4">
+        Software Engineer | AI & Autonomous Systems Architect
+      </h2>
+
+      <p class="hero-description mb-4">
+        I design and build intelligent software systems, backend platforms
+        and autonomous applications. My work focuses on Python engineering,
+        AI infrastructure, distributed systems, cloud technologies and
+        solving complex engineering problems through practical software.
+      </p>
+
+      <p class="muted mb-5">
+        Abuja, Nigeria · Open to Global Remote Opportunities
+      </p>
+
+      <div class="d-flex flex-wrap gap-3 hero-actions">
+
+        <a href="#projects" class="btn btn-accent">
+          <i class="fas fa-code me-2"></i>Explore Engineering Projects
+        </a>
+
+        <a href="https://www.linkedin.com/in/joseph-ochelebe-15a09588"
+          target="_blank" rel="noopener noreferrer"
+          class="btn btn-outline-accent">
+          <i class="fab fa-linkedin me-2"></i>LinkedIn Profile
+        </a>
+
+        <a href="https://github.com/Joeches"
+          target="_blank" rel="noopener noreferrer"
+          class="btn btn-outline-light">
+          <i class="fab fa-github me-2"></i>GitHub
+        </a>
+
+      </div>
+
     </div>
   </header>
 
-  <!-- Professional Pitch Section -->
-  <section id="pitch" class="py-5 bg-black">
-    <div class="container text-center">
-      <h2 class="neon-text mb-4 display-5">Founder Pitch – Quantum Future Builder</h2>
-      <p class="lead opacity-75 mb-4 mx-auto" style="max-width: 900px;">
-        As Founder/CTO of NeuroBridge Technologies Ltd, I engineer patent-aware quantum kernels fused with generative AI (Google Gemini synergies) to unlock real-world advantage in energy, sensing, diagnostics, and drug discovery. With 4+ live enterprise-grade MVPs and 11+ years execution, NeuroBridge targets the exploding quantum ecosystem — projected $5–20B+ market by 2026–2030.
-      </p>
-      <div class="d-flex justify-content-center gap-4 flex-wrap">
-        <a href="https://docs.google.com/presentation/d/17eIH2CE6p9t27CO007CqxUmbzTk7_tHE8jLfsw1r_ec/edit?usp=sharing" target="_blank" class="btn btn-cyan btn-lg px-5 py-3 shadow">
-          <i class="fas fa-rocket me-2"></i> Full Investor Deck
-        </a>
-        <p class="fs-4 text-cyan align-self-center mb-0">$200M+ Projected Valuation Potential</p>
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="container">
+
+      <div class="row align-items-center g-5">
+
+        <div class="col-lg-7">
+
+          <div class="eyebrow mb-3">ABOUT ME</div>
+
+          <h2 class="section-title mb-4">
+            Engineering software that solves <span class="accent">complex problems.</span>
+          </h2>
+
+          <p class="muted">
+            I am a software engineer with extensive hands-on experience
+            developing Python applications, backend services, intelligent
+            platforms and technology-driven solutions.
+          </p>
+
+          <p class="muted">
+            My engineering interests span artificial intelligence,
+            autonomous systems, energy intelligence, distributed computing,
+            robotics and cloud infrastructure.
+          </p>
+
+          <p class="muted">
+            I approach engineering through system design, implementation,
+            testing and iterative validation. I value maintainable
+            architectures, clear technical documentation, measurable
+            results and software that addresses real-world requirements.
+          </p>
+
+          <p class="muted">
+            My portfolio demonstrates this approach through NeuroBridge
+            Energy Intelligence and AgentShield (APEX), two engineering
+            initiatives focused on different areas of complex software systems.
+          </p>
+
+        </div>
+
+        <div class="col-lg-5">
+
+          <div class="info-card p-4">
+
+            <div class="eyebrow mb-3">PROFESSIONAL FOCUS</div>
+
+            <div class="mb-3">
+              <i class="fas fa-server accent me-2"></i>
+              Backend & Platform Engineering
+            </div>
+
+            <div class="mb-3">
+              <i class="fas fa-brain accent me-2"></i>
+              AI & Intelligent Systems
+            </div>
+
+            <div class="mb-3">
+              <i class="fas fa-network-wired accent me-2"></i>
+              Distributed Systems
+            </div>
+
+            <div class="mb-3">
+              <i class="fas fa-cloud accent me-2"></i>
+              Cloud Infrastructure
+            </div>
+
+            <div class="mb-3">
+              <i class="fas fa-robot accent me-2"></i>
+              Robotics & Autonomous Applications
+            </div>
+
+            <div>
+              <i class="fas fa-shield-alt accent me-2"></i>
+              AI Agent Security
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
+
     </div>
   </section>
 
-  <!-- Projects Section -->
-  <section id="projects" class="py-5">
+  <!-- PROJECTS -->
+  <section id="projects" class="section section-dark">
     <div class="container">
-      <h2 class="text-center mb-5 neon-text">Quantum Product Universe</h2>
+
+      <div class="text-center mb-5">
+        <div class="eyebrow mb-3">SELECTED ENGINEERING WORK</div>
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle mx-auto mt-3">
+          Selected software engineering initiatives demonstrating
+          architecture, implementation, system integration and technical problem-solving.
+        </p>
+      </div>
+
       <div class="row g-4">
-        <!-- Quantum Energy Harvest™ PRO -->
-        <div class="col-md-6 col-lg-4">
-          <div class="card bg-dark border-cyan h-100 hover-glow position-relative overflow-hidden">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title text-cyan">Quantum Energy Harvest™ PRO</h5>
-              <p class="card-text flex-grow-1">Quantum ML simulator for ergotropy-optimized harvesting with topological resilience & Gemini real-world injection.</p>
-              <div class="mt-auto">
-                <div class="d-flex align-items-center gap-2 mb-2">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Google_Gemini_icon_2025.svg" alt="Gemini API" width="32" class="rounded">
-                  <small class="text-cyan">Gemini: Real-world data + automation</small>
-                </div>
-                <a href="https://quantumvibe-energy-harvest.onrender.com/" class="btn btn-cyan w-100 mb-2" target="_blank">Live MVP</a>
-                <a href="https://docs.google.com/presentation/d/17eIH2CE6p9t27CO007CqxUmbzTk7_tHE8jLfsw1r_ec/edit?usp=sharing" target="_blank" class="btn btn-outline-magenta w-100">
-                  Pitch Deck – TAM: Quantum Energy / Batteries ~$14–65B by 2030 (22–24% CAGR)
-                </a>
+
+        <!-- NEUROBRIDGE -->
+        <div class="col-lg-6">
+
+          <article class="project-card">
+
+            <div class="project-top">
+
+              <div class="project-icon">
+                <i class="fas fa-bolt"></i>
               </div>
+
+              <div class="project-label">FLAGSHIP PROJECT 01</div>
+
+              <h3 class="mt-2">NeuroBridge Energy Intelligence</h3>
+
+              <p class="muted mb-0">
+                Autonomous energy intelligence and simulation platform.
+              </p>
+
             </div>
-          </div>
-        </div>
-        <!-- NEUROBRIDGE | OMNI-TRINITY -->
-        <div class="col-md-6 col-lg-4">
-          <div class="card bg-dark border-cyan h-100 hover-glow">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title text-cyan">NEUROBRIDGE | OMNI-TRINITY</h5>
-              <p class="card-text flex-grow-1">Quantum-neural sensing dashboard – 99.99% benchmark, multi-domain real-time analytics.</p>
-              <div class="mt-auto">
-                <div class="d-flex align-items-center gap-2 mb-2">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Google_Gemini_icon_2025.svg" alt="Gemini" width="32" class="rounded">
-                  <small class="text-cyan">Gemini: Scenario & anomaly synthesis</small>
-                </div>
-                <a href="https://omni-present.onrender.com/" class="btn btn-cyan w-100 mb-2" target="_blank">Live MVP</a>
-                <a href="https://docs.google.com/presentation/d/17eIH2CE6p9t27CO007CqxUmbzTk7_tHE8jLfsw1r_ec/edit?usp=sharing" target="_blank" class="btn btn-outline-magenta w-100">
-                  Pitch Deck – TAM: Quantum Sensing ~$500M–$1.5B by 2026–2034 (11–25% CAGR)
-                </a>
+
+            <div class="project-body">
+
+              <p class="muted">
+                An engineering platform designed to integrate energy
+                simulation, intelligent analysis, distributed processing
+                and monitoring into a unified energy intelligence workflow.
+              </p>
+
+              <h6 class="accent">Engineering areas</h6>
+
+              <ul class="muted">
+                <li>Backend service architecture using Python and FastAPI.</li>
+                <li>Asynchronous processing with Redis and Celery.</li>
+                <li>Energy-system simulation integrations.</li>
+                <li>Monitoring and system performance instrumentation.</li>
+                <li>Integration with OpenDSS, GridLAB-D and HELICS.</li>
+              </ul>
+
+              <h6 class="accent mt-4">Technology stack</h6>
+
+              <div class="mb-4">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">Redis</span>
+                <span class="tech-tag">Celery</span>
+                <span class="tech-tag">OpenDSS</span>
+                <span class="tech-tag">GridLAB-D</span>
+                <span class="tech-tag">HELICS</span>
+                <span class="tech-tag">Prometheus</span>
+                <span class="tech-tag">OCI</span>
               </div>
-            </div>
-          </div>
-        </div>
-        <!-- QEPNS | Quantum-AI Diagnostic Suite -->
-        <div class="col-md-6 col-lg-4">
-          <div class="card bg-dark border-cyan h-100 hover-glow">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title text-cyan">QEPNS | Quantum-AI Diagnostic Suite</h5>
-              <p class="card-text flex-grow-1">Privacy-first quantum diagnostics with coherence/entropy kernels & cloud tracking.</p>
-              <div class="mt-auto">
-                <div class="d-flex align-items-center gap-2 mb-2">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Google_Gemini_icon_2025.svg" alt="Gemini" width="32" class="rounded">
-                  <small class="text-cyan">Gemini: Insight & report augmentation</small>
-                </div>
-                <a href="https://qepns.onrender.com/" class="btn btn-cyan w-100 mb-2" target="_blank">Live MVP</a>
-                <a href="https://docs.google.com/presentation/d/17eIH2CE6p9t27CO007CqxUmbzTk7_tHE8jLfsw1r_ec/edit?usp=sharing" target="_blank" class="btn btn-outline-magenta w-100">
-                  Pitch Deck – TAM: Quantum Healthcare / Diagnostics ~$300M–$1.3B by 2025–2030 (37%+ CAGR)
+
+              <div class="d-flex flex-wrap gap-2">
+
+                <a href="https://neurobridge-portfolio-website.netlify.app"
+                  target="_blank" rel="noopener noreferrer"
+                  class="btn btn-accent">
+                  <i class="fas fa-external-link-alt me-2"></i>Project Portfolio
                 </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Quantum Bind Pro -->
-        <div class="col-md-6 col-lg-4">
-          <div class="card bg-dark border-cyan h-100 hover-glow">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title text-cyan">Quantum Bind Pro</h5>
-              <p class="card-text flex-grow-1">VQE molecular simulator for drug discovery – ground state, stability, qubit-efficient.</p>
-              <div class="mt-auto">
-                <div class="d-flex align-items-center gap-2 mb-2">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Google_Gemini_icon_2025.svg" alt="Gemini" width="32" class="rounded">
-                  <small class="text-cyan">Gemini: Parameter & validation support</small>
-                </div>
-                <a href="https://quantum-bind-pro.onrender.com/" class="btn btn-cyan w-100 mb-2" target="_blank">Live MVP</a>
-                <a href="https://docs.google.com/presentation/d/17eIH2CE6p9t27CO007CqxUmbzTk7_tHE8jLfsw1r_ec/edit?usp=sharing" target="_blank" class="btn btn-outline-magenta w-100">
-                  Pitch Deck – TAM: Quantum Drug Discovery ~$450M–$800M+ by 2025–2030 (12–37% CAGR)
+
+                <a href="https://github.com/Joeches/neurobridgeenergyinteligence"
+                  target="_blank" rel="noopener noreferrer"
+                  class="btn btn-outline-accent">
+                  <i class="fab fa-github me-2"></i>Source Repository
                 </a>
+
               </div>
+
+              <p class="muted small mt-3 mb-0">
+                Status: Software and OCI validation reported; hardware
+                and field validation remain pending.
+              </p>
+
             </div>
-          </div>
+
+          </article>
+
         </div>
+
+        <!-- AGENTSHIELD -->
+        <div class="col-lg-6">
+
+          <article class="project-card">
+
+            <div class="project-top">
+
+              <div class="project-icon">
+                <i class="fas fa-shield-halved"></i>
+              </div>
+
+              <div class="project-label">FLAGSHIP PROJECT 02</div>
+
+              <h3 class="mt-2">AgentShield (APEX)</h3>
+
+              <p class="muted mb-0">
+                AI agent security exposure and attack-path analysis platform.
+              </p>
+
+            </div>
+
+            <div class="project-body">
+
+              <p class="muted">
+                A security engineering platform designed to analyze AI agent
+                permissions, identify exposure paths and explain potential
+                security impacts through structured analysis.
+              </p>
+
+              <h6 class="accent">Engineering areas</h6>
+
+              <ul class="muted">
+                <li>AI agent permission and exposure analysis.</li>
+                <li>Security boundary and authorization architecture.</li>
+                <li>Attack-path and impact analysis.</li>
+                <li>Structured security evidence and reporting.</li>
+                <li>Backend and frontend application integration.</li>
+              </ul>
+
+              <h6 class="accent mt-4">Technology stack</h6>
+
+              <div class="mb-4">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Next.js</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">Security Engineering</span>
+                <span class="tech-tag">AI Systems</span>
+              </div>
+
+              <div class="d-flex flex-wrap gap-2">
+
+                <a href="https://demo-agentshield.vercel.app/integrations"
+                  target="_blank" rel="noopener noreferrer"
+                  class="btn btn-accent">
+                  <i class="fas fa-play me-2"></i>View Demo
+                </a>
+
+                <a href="https://github.com/Joeches"
+                  target="_blank" rel="noopener noreferrer"
+                  class="btn btn-outline-accent">
+                  <i class="fab fa-github me-2"></i>GitHub
+                </a>
+
+              </div>
+
+              <p class="muted small mt-3 mb-0">
+                Status: Engineering implementation and testing evidence
+                should be reviewed alongside the demo before production deployment.
+              </p>
+
+            </div>
+
+          </article>
+
+        </div>
+
       </div>
+
       <div class="text-center mt-5">
-        <a href="/templates/projects-dashboard.html" class="btn btn-outline-cyan btn-lg px-5 py-3">Full Detailed Dashboard →</a>
+
+        <a href="/projects-dashboard.html"
+          class="btn btn-outline-accent">
+          Explore Detailed Project Portfolio
+          <i class="fas fa-arrow-right ms-2"></i>
+        </a>
+
       </div>
+
     </div>
   </section>
 
-  <!-- Tools & Benchmarks Section -->
-  <section id="tools" class="py-5 bg-black">
+  <!-- EXPERTISE -->
+  <section id="expertise" class="section">
     <div class="container">
-      <h2 class="text-center mb-5 neon-text">Tools • Benchmarks • Partnerships</h2>
-      <div class="row text-center g-4 justify-content-center">
-        <!-- NREL -->
-        <div class="col-6 col-md-3">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/National_Renewable_Energy_Laboratory_logo.svg/512px-National_Renewable_Energy_Laboratory_logo.svg.png" alt="NREL" class="img-fluid logo-glow" style="max-height:90px;">
-        </div>
-        <!-- UN SDGs -->
-        <div class="col-6 col-md-3">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/Sustainable_Development_Goals.png" alt="UN SDGs" class="img-fluid logo-glow" style="max-height:90px;">
-        </div>
-        <!-- ESG -->
-        <div class="col-6 col-md-3">
-          <img src="https://cdn.vectorstock.com/i/1000v/75/58/esg-environmental-social-governance-icon-set-flat-vector-47597558.jpg" alt="ESG" class="img-fluid logo-glow" style="max-height:90px;">
-        </div>
-        <!-- PatentView (USPTO) -->
-        <div class="col-6 col-md-3">
-          <img src="https://www.uspto.gov/themes/custom/uspto_ds/images/USPTO-logo-RGB-stacked-1200px.png" alt="PatentView (USPTO)" class="img-fluid logo-glow" style="max-height:90px;">
-        </div>
+
+      <div class="text-center mb-5">
+        <div class="eyebrow mb-3">TECHNICAL CAPABILITIES</div>
+        <h2 class="section-title">Engineering Expertise</h2>
+        <p class="section-subtitle mx-auto mt-3">
+          Technologies and engineering domains applied across my projects.
+        </p>
       </div>
+
+      <div class="row g-4">
+
+        <div class="col-md-6 col-lg-4">
+          <div class="skill-card">
+            <i class="fab fa-python"></i>
+            <h5>Backend Engineering</h5>
+            <p class="muted">
+              Python, FastAPI, Flask, REST APIs, SQLAlchemy,
+              data processing and backend architecture.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="skill-card">
+            <i class="fas fa-brain"></i>
+            <h5>AI & Machine Learning</h5>
+            <p class="muted">
+              Intelligent applications, machine learning workflows,
+              AI integration and autonomous software systems.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="skill-card">
+            <i class="fas fa-network-wired"></i>
+            <h5>Distributed Systems</h5>
+            <p class="muted">
+              Redis, Celery, asynchronous processing,
+              service integration and system orchestration.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="skill-card">
+            <i class="fas fa-cloud"></i>
+            <h5>Cloud Engineering</h5>
+            <p class="muted">
+              Google Cloud Platform, Oracle Cloud Infrastructure,
+              deployment workflows and infrastructure integration.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="skill-card">
+            <i class="fas fa-code"></i>
+            <h5>Frontend Engineering</h5>
+            <p class="muted">
+              React, Next.js, JavaScript, HTML, CSS,
+              responsive interfaces and API integration.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="skill-card">
+            <i class="fas fa-robot"></i>
+            <h5>Robotics & Simulation</h5>
+            <p class="muted">
+              Robotics applications, engineering simulation,
+              energy-system modeling and intelligent automation.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-black py-4 border-top border-cyan">
-    <div class="container text-center">
-      <p class="mb-3 opacity-75">&copy; 2024 NeuroBridge Technologies Ltd. All rights reserved.</p>
-      <div class="d-flex justify-content-center gap-4">
-        <a href="https://www.linkedin.com/in/joseph-ochelebe-15a09588" target="_blank" class="text-cyan"><i class="fab fa-linkedin fs-4"></i></a>
-        <a href="https://wa.me/2348155935110?text=Hello%20Joseph%2C%20quantum%20collaboration%20interest" target="_blank" class="text-success"><i class="fab fa-whatsapp fs-4"></i></a>
+  <!-- ENGINEERING EVIDENCE -->
+  <section id="evidence" class="section section-dark">
+    <div class="container">
+
+      <div class="text-center mb-5">
+        <div class="eyebrow mb-3">HOW I ENGINEER</div>
+        <h2 class="section-title">Engineering Beyond the Interface</h2>
+        <p class="section-subtitle mx-auto mt-3">
+          My work emphasizes architecture, implementation,
+          validation and technical clarity.
+        </p>
       </div>
+
+      <div class="row g-4">
+
+        <div class="col-md-6 col-lg-3">
+          <div class="evidence-card">
+            <i class="fas fa-sitemap"></i>
+            <h5>System Architecture</h5>
+            <p class="muted small">
+              Designing service boundaries, application components,
+              data flows and system integrations.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="evidence-card">
+            <i class="fas fa-vial"></i>
+            <h5>Testing & Validation</h5>
+            <p class="muted small">
+              Applying automated tests, controlled experiments,
+              integration testing and technical verification.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="evidence-card">
+            <i class="fas fa-chart-line"></i>
+            <h5>Performance Engineering</h5>
+            <p class="muted small">
+              Monitoring application behavior, measuring performance
+              and identifying system bottlenecks.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="evidence-card">
+            <i class="fas fa-file-code"></i>
+            <h5>Technical Documentation</h5>
+            <p class="muted small">
+              Documenting architecture, implementation decisions,
+              system behavior and validation evidence.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section">
+    <div class="container">
+
+      <div class="row g-5">
+
+        <div class="col-lg-6">
+
+          <div class="eyebrow mb-3">EDUCATION</div>
+          <h2 class="section-title mb-4">Academic Background</h2>
+
+          <div class="timeline-item">
+            <h5>Higher National Diploma (HND)</h5>
+            <p class="muted mb-1">Federal Polytechnic Bida</p>
+            <p class="small muted">September 2024 – Present</p>
+          </div>
+
+          <div class="timeline-item">
+            <h5>National Diploma (ND)</h5>
+            <p class="muted mb-1">Federal Polytechnic Bida</p>
+            <p class="small muted">2016</p>
+          </div>
+
+        </div>
+
+        <div class="col-lg-6">
+
+          <div class="eyebrow mb-3">CERTIFICATIONS</div>
+          <h2 class="section-title mb-4">Professional Development</h2>
+
+          <div class="timeline-item">
+            <h5>Google Cloud Core Infrastructure Engineer</h5>
+            <p class="muted">Google Cloud · 2022</p>
+          </div>
+
+          <div class="timeline-item">
+            <h5>Google Digital Marketing</h5>
+            <p class="muted">Google</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section section-dark">
+    <div class="container">
+
+      <div class="contact-panel text-center">
+
+        <div class="eyebrow mb-3">LET'S CONNECT</div>
+
+        <h2 class="section-title mb-3">
+          Building something meaningful?
+        </h2>
+
+        <p class="muted mx-auto mb-4" style="max-width:650px;">
+          I am interested in software engineering opportunities,
+          AI infrastructure, platform engineering, autonomous systems
+          and technically challenging collaborations.
+        </p>
+
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+
+          <a href="https://www.linkedin.com/in/joseph-ochelebe-15a09588"
+            target="_blank" rel="noopener noreferrer"
+            class="btn btn-accent">
+            <i class="fab fa-linkedin me-2"></i>Connect on LinkedIn
+          </a>
+
+          <a href="https://github.com/Joeches"
+            target="_blank" rel="noopener noreferrer"
+            class="btn btn-outline-accent">
+            <i class="fab fa-github me-2"></i>Explore GitHub
+          </a>
+
+          <a href="https://wa.me/2348155935110"
+            target="_blank" rel="noopener noreferrer"
+            class="btn btn-outline-light">
+            <i class="fab fa-whatsapp me-2"></i>Contact Me
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-4">
+    <div class="container">
+
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+
+        <div>
+          <strong>Joseph Ochelebe</strong>
+          <p class="muted small mb-0">
+            Software Engineer · AI & Autonomous Systems
+          </p>
+        </div>
+
+        <div class="d-flex gap-3">
+
+          <a class="social-link"
+            href="https://www.linkedin.com/in/joseph-ochelebe-15a09588"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+
+          <a class="social-link"
+            href="https://github.com/Joeches"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+
+          <a class="social-link"
+            href="https://wa.me/2348155935110"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+      <hr style="border-color:var(--border);">
+
+      <p class="text-center muted small mb-0">
+        © <span id="current-year">2026</span> Joseph Ochelebe.
+        Engineering intelligent software systems.
+      </p>
+
     </div>
   </footer>
 
-  <!-- Floating WhatsApp CTA -->
-  <a href="https://wa.me/2348155935110?text=Hello%20Joseph%2C%20quantum%20collaboration%20interest" class="whatsapp-float btn btn-success shadow-lg" target="_blank" aria-label="Chat on WhatsApp">
-    <i class="fab fa-whatsapp fs-3"></i>
+  <!-- FLOATING CONTACT -->
+  <a href="https://wa.me/2348155935110"
+    class="whatsapp-float btn btn-success shadow"
+    target="_blank" rel="noopener noreferrer"
+    aria-label="Contact Joseph on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
   </a>
 
-  <!-- Back to Top Button -->
-  <button id="back-to-top" class="btn btn-cyan shadow-lg position-fixed bottom-0 end-0 m-3" style="display: none;" aria-label="Back to Top">
+  <button id="back-to-top" aria-label="Back to top">
     <i class="fas fa-arrow-up"></i>
   </button>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
   <script src="/statics/app.js"></script>
-  <!-- Service Worker Registration -->
+
   <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/statics/sw.js').catch(error => {
-          console.error('Service Worker registration failed:', error);
-        });
-      });
-    }
-  </script>
-  <!-- Smooth Scroll and Back to Top -->
-  <script>
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
+    document.getElementById("current-year").textContent =
+      new Date().getFullYear();
+
+    const backToTop = document.getElementById("back-to-top");
+
+    window.addEventListener("scroll", () => {
+      backToTop.style.display =
+        window.scrollY > 350 ? "block" : "none";
+    });
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
       });
     });
 
-    // Back to top button
-    const backToTop = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        backToTop.style.display = 'block';
-      } else {
-        backToTop.style.display = 'none';
-      }
-    });
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener("click", event => {
+        const target = document.querySelector(
+          link.getAttribute("href")
+        );
 
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (target) {
+          event.preventDefault();
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+          const navbar = document.querySelector(".navbar-collapse");
+
+          if (navbar && navbar.classList.contains("show")) {
+            bootstrap.Collapse.getOrCreateInstance(navbar).hide();
+          }
+        }
+      });
     });
   </script>
+
 </body>
 </html>
