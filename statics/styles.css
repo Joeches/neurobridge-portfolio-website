@@ -1,182 +1,504 @@
-/* =====================================================================
-   NeuroBridge Quantum Portfolio - Enhanced Styles 2026 v2
-   Professional Futuristic Quantum-Kernel Designer Aesthetic
-   Optimized for performance, accessibility & visual impact
-   Author: Joseph Ochelebe | Founder & CTO - NeuroBridge Technologies Ltd
-   ===================================================================== */
+
+/* ==========================================================================
+   JOSEPH OCHELEBE — PROFESSIONAL ENGINEERING PORTFOLIO
+   Shared stylesheet: statics/styles.css
+   Design: Professional dark interface with subtle quantum-inspired accents
+   Responsive | Accessible | Performance-conscious
+   ========================================================================== */
+
+/* ==========================================================================
+   1. DESIGN TOKENS
+   ========================================================================== */
 
 :root {
-  --quantum-cyan:    #00f0ff;
-  --quantum-magenta: #ff00aa;
-  --quantum-purple:  #9d00ff;
-  --quantum-blue:    #00aaff;
-  --bg-dark:         #0a001f;
-  --bg-darker:       #050014;
-  --text-light:      #e0e0ff;
-  --text-muted:      #a0a0cc;
-  --glow-cyan:       0 0 15px var(--quantum-cyan), 0 0 35px var(--quantum-cyan);
-  --glow-mag:        0 0 15px var(--quantum-magenta), 0 0 35px var(--quantum-magenta);
-  --glow-purple:     0 0 15px var(--quantum-purple),  0 0 35px var(--quantum-purple);
-  --transition:      all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  color-scheme: dark;
+
+  --quantum-cyan: #43d9e8;
+  --quantum-magenta: #d98bdf;
+  --quantum-purple: #9b8afb;
+  --quantum-blue: #63a9f5;
+
+  --bg-dark: #080d18;
+  --bg-darker: #050914;
+  --bg-surface: #101827;
+  --bg-surface-light: #162236;
+
+  --text-light: #edf3fc;
+  --text-muted: #a8b5c9;
+  --text-subtle: #8190a8;
+
+  --border-color: rgba(157, 180, 210, 0.16);
+  --border-highlight: rgba(67, 217, 232, 0.35);
+
+  --glow-cyan: 0 0 22px rgba(67, 217, 232, 0.16);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  --content-width: 1160px;
+
+  --transition: 180ms ease;
 }
 
-/* Respect user prefers-reduced-motion setting */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
+/* ==========================================================================
+   2. RESET AND GLOBAL BASE
+   ========================================================================== */
 
-/* Global Reset & Base */
-* {
-  margin: 0;
-  padding: 0;
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 90px;
 }
 
 body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  background: linear-gradient(145deg, var(--bg-dark) 0%, #12003a 50%, #1a004d 100%);
-  color: var(--text-light);
   min-height: 100vh;
+  margin: 0;
   overflow-x: hidden;
-  position: relative;
+
+  font-family:
+    Inter,
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+
+  color: var(--text-light);
+
+  background:
+    radial-gradient(
+      ellipse at 12% 5%,
+      rgba(67, 217, 232, 0.075),
+      transparent 34%
+    ),
+    radial-gradient(
+      ellipse at 90% 35%,
+      rgba(155, 138, 251, 0.065),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      var(--bg-darker),
+      var(--bg-dark) 55%,
+      #0d1425
+    );
+
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* Quantum particle overlay (fallback if canvas fails) */
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at 15% 25%, rgba(0,240,255,0.07) 0%, transparent 60%),
-              radial-gradient(circle at 85% 75%, rgba(157,0,255,0.05) 0%, transparent 70%);
+  z-index: -1;
   pointer-events: none;
-  z-index: -2;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.012) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.012) 1px,
+      transparent 1px
+    );
+
+  background-size: 48px 48px;
+  opacity: 0.45;
 }
 
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Orbitron', system-ui, sans-serif;
+img,
+svg {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+a {
+  color: var(--quantum-cyan);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: #a3f5fb;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  color: #061018;
+  background: var(--quantum-cyan);
+}
+
+/* ==========================================================================
+   3. TYPOGRAPHY
+   ========================================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+
+  color: var(--text-light);
+
+  font-family:
+    Inter,
+    "Segoe UI",
+    system-ui,
+    sans-serif;
+
   font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+  text-transform: none;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4.8rem);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.7rem);
+}
+
+h3 {
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+}
+
+p {
+  color: var(--text-muted);
+}
+
+.lead {
+  color: #c5d1e2;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.8;
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+.text-white {
+  color: var(--text-light) !important;
 }
 
 .neon-text {
   color: var(--quantum-cyan);
-  text-shadow: var(--glow-cyan);
-  animation: neon-pulse 6s ease-in-out infinite alternate;
+  text-shadow: 0 0 20px rgba(67, 217, 232, 0.2);
 }
 
 .glitch {
-  position: relative;
   color: var(--quantum-cyan);
-  text-shadow: var(--glow-cyan);
-  animation: glitch-skew 4s infinite linear alternate-reverse;
 }
 
-.glitch::before,
-.glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  inset: 0;
-  opacity: 0.85;
-  clip-path: inset(0 0 0 0);
+.text-gradient {
+  color: var(--quantum-cyan);
+  background: linear-gradient(
+    100deg,
+    var(--quantum-cyan),
+    var(--quantum-purple)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.glitch::before {
-  left: 2px;
-  text-shadow: -2px 0 var(--quantum-magenta);
-  animation: glitch-anim1 3.5s infinite steps(5);
+/* ==========================================================================
+   4. LAYOUT HELPERS
+   ========================================================================== */
+
+.container {
+  width: min(100% - 40px, var(--content-width));
+  margin-inline: auto;
 }
 
-.glitch::after {
-  left: -2px;
-  text-shadow: 2px 0 var(--quantum-blue);
-  animation: glitch-anim2 2.8s infinite steps(5);
+.section {
+  padding-block: clamp(64px, 9vw, 110px);
 }
 
-/* Animations */
-@keyframes neon-pulse {
-  0%, 100% { text-shadow: var(--glow-cyan); opacity: 1; }
-  50%      { text-shadow: 0 0 25px var(--quantum-cyan), 0 0 60px var(--quantum-cyan); opacity: 0.95; }
+.section-heading {
+  max-width: 760px;
+  margin-bottom: 42px;
 }
 
-@keyframes glitch-anim1 {
-  0%   { clip: rect(42px, 9999px, 44px, 0); transform: skew(0.6deg); }
-  5%   { clip: rect(17px, 9999px, 59px, 0); transform: skew(0.9deg); }
-  10%  { clip: rect(63px, 9999px, 104px, 0); transform: skew(-0.4deg); }
-  /* ... truncated for brevity – add more random keyframes in production ... */
-  100% { clip: rect(0, 9999px, 0, 0); transform: skew(0deg); }
+.section-heading p {
+  max-width: 680px;
 }
 
-@keyframes glitch-anim2 {
-  0%   { clip: rect(65px, 9999px, 119px, 0); transform: skew(-0.2deg); }
-  /* ... more steps ... */
-  100% { clip: rect(0, 9999px, 0, 0); transform: skew(0deg); }
-}
+.eyebrow,
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
 
-@keyframes glitch-skew {
-  0%, 100% { transform: skew(0deg); }
-  10%, 90% { transform: skew(0.5deg); }
-}
+  margin-bottom: 16px;
 
-/* Buttons – Futuristic enhanced */
-.btn-cyan {
-  background: linear-gradient(90deg, var(--quantum-cyan), var(--quantum-blue));
-  color: #000;
+  color: var(--quantum-cyan);
+
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 1px;
-  border: none;
-  box-shadow: var(--glow-cyan);
-  transition: var(--transition);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before,
+.section-label::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--quantum-cyan);
+}
+
+/* ==========================================================================
+   5. NAVIGATION
+   ========================================================================== */
+
+.navbar {
+  background: rgba(5, 9, 20, 0.88);
+  border-bottom: 1px solid var(--border-color);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.navbar-brand {
+  color: var(--text-light) !important;
+  font-weight: 750;
+  letter-spacing: -0.025em;
+}
+
+.navbar-nav .nav-link {
+  padding-inline: 14px;
+
+  color: var(--text-muted) !important;
+
+  font-size: 0.92rem;
+  font-weight: 550;
+
+  transition: color var(--transition);
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: var(--quantum-cyan) !important;
+}
+
+.navbar-toggler {
+  border-color: var(--border-color);
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 3px rgba(67, 217, 232, 0.2);
+}
+
+/* ==========================================================================
+   6. HERO
+   ========================================================================== */
+
+.bg-gradient-hero {
+  position: relative;
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      ellipse at 75% 20%,
+      rgba(67, 217, 232, 0.11),
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 20% 85%,
+      rgba(155, 138, 251, 0.10),
+      transparent 45%
+    ),
+    linear-gradient(
+      145deg,
+      #080d18,
+      #10192b
+    );
+}
+
+.hero {
+  min-height: min(780px, 90vh);
+
+  display: flex;
+  align-items: center;
+
+  padding-block: 100px 80px;
+}
+
+.hero-content {
+  max-width: 850px;
+}
+
+.hero h1 {
+  margin-bottom: 24px;
+}
+
+.hero p {
+  max-width: 700px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+/* ==========================================================================
+   7. BUTTONS
+   ========================================================================== */
+
+.btn {
+  border-radius: 10px;
+  padding: 11px 21px;
+
+  font-weight: 650;
+
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    color var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition);
+}
+
+.btn-cyan {
+  color: #061018;
+
+  background: linear-gradient(
+    100deg,
+    var(--quantum-cyan),
+    #8cecf2
+  );
+
+  border: 1px solid transparent;
+
+  font-weight: 750;
+
+  box-shadow: 0 5px 22px rgba(67, 217, 232, 0.12);
 }
 
 .btn-cyan:hover,
 .btn-cyan:focus {
-  transform: translateY(-4px) scale(1.04);
-  box-shadow: 0 0 30px var(--quantum-cyan), 0 15px 40px rgba(0,240,255,0.4);
+  color: #061018;
+  background: #a0f3f7;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 9px 28px rgba(67, 217, 232, 0.2);
 }
 
 .btn-outline-magenta {
-  border-color: var(--quantum-magenta);
   color: var(--quantum-magenta);
-  box-shadow: var(--glow-mag);
-  transition: var(--transition);
+
+  border: 1px solid rgba(217, 139, 223, 0.55);
+
+  background: transparent;
 }
 
 .btn-outline-magenta:hover,
 .btn-outline-magenta:focus {
-  background: var(--quantum-magenta);
-  color: #000;
-  box-shadow: 0 0 30px var(--quantum-magenta);
+  color: #fff;
+  background: rgba(217, 139, 223, 0.12);
+  border-color: var(--quantum-magenta);
 }
 
-/* Cards – Holographic depth & shimmer */
+.btn-outline-light {
+  color: var(--text-light);
+  border-color: var(--border-color);
+}
+
+.btn-outline-light:hover {
+  color: var(--quantum-cyan);
+  border-color: var(--quantum-cyan);
+  background: rgba(67, 217, 232, 0.06);
+}
+
+/* ==========================================================================
+   8. CARDS
+   ========================================================================== */
+
 .card {
-  background: linear-gradient(135deg, rgba(20,10,60,0.55), rgba(10,0,40,0.45));
-  border: 1px solid rgba(0,240,255,0.35);
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
-  transition: var(--transition);
-  overflow: hidden;
   position: relative;
+  height: 100%;
+  overflow: hidden;
+
+  color: var(--text-light);
+
+  background: linear-gradient(
+    145deg,
+    rgba(20, 31, 49, 0.94),
+    rgba(12, 20, 34, 0.96)
+  );
+
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
+
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+
+  border-color: var(--border-highlight);
+
+  box-shadow:
+    var(--glow-cyan),
+    0 18px 42px rgba(0, 0, 0, 0.23);
 }
 
 .card::before {
-  content: '';
+  content: "";
+
   position: absolute;
-  inset: 0;
-  background: linear-gradient(45deg, transparent, rgba(0,240,255,0.08), transparent);
+  inset: 0 0 auto;
+
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--quantum-cyan),
+    var(--quantum-purple),
+    transparent
+  );
+
   opacity: 0;
-  transition: opacity 0.6s;
+
+  transition: opacity var(--transition);
+
   pointer-events: none;
 }
 
@@ -184,58 +506,365 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 1;
 }
 
-.card:hover {
-  transform: translateY(-12px) rotateX(4deg) rotateY(4deg);
-  box-shadow: var(--glow-cyan), 0 30px 60px rgba(0,0,0,0.5);
-  border-color: var(--quantum-magenta);
+.card-body {
+  padding: clamp(20px, 3vw, 30px);
 }
 
-/* Logo glow */
+.card-title {
+  color: var(--text-light);
+}
+
+.card-text {
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   9. PROJECT CARDS
+   ========================================================================== */
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card .card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.project-card .project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.project-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+
+  object-fit: cover;
+
+  background: var(--bg-surface);
+
+  border-bottom: 1px solid var(--border-color);
+}
+
+.project-tag,
+.skill-tag,
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+
+  margin: 4px 5px 4px 0;
+  padding: 5px 11px;
+
+  color: #bceff3;
+
+  background: rgba(67, 217, 232, 0.07);
+
+  border: 1px solid rgba(67, 217, 232, 0.2);
+  border-radius: 999px;
+
+  font-size: 0.77rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.project-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 5px 10px;
+
+  color: #c6d7eb;
+
+  background: rgba(157, 180, 210, 0.08);
+
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+
+  font-size: 0.75rem;
+  font-weight: 650;
+}
+
+/* ==========================================================================
+   10. SKILLS AND EXPERTISE
+   ========================================================================== */
+
+.skill-group {
+  height: 100%;
+  padding: 22px;
+
+  background: rgba(16, 24, 39, 0.72);
+
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.skill-group h3 {
+  margin-bottom: 14px;
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-list .skill-tag {
+  margin: 0;
+}
+
+/* ==========================================================================
+   11. ARCHITECTURE AND TECHNICAL EVIDENCE
+   ========================================================================== */
+
+.architecture-panel,
+.evidence-panel {
+  padding: clamp(20px, 3vw, 30px);
+
+  background: rgba(16, 24, 39, 0.85);
+
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+}
+
+.architecture-step {
+  padding: 13px 16px;
+
+  color: var(--text-light);
+
+  background: var(--bg-surface-light);
+
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+
+  text-align: center;
+}
+
+.architecture-arrow {
+  padding: 7px;
+  color: var(--quantum-cyan);
+  text-align: center;
+}
+
+.evidence-list {
+  padding-left: 20px;
+  color: var(--text-muted);
+}
+
+.evidence-list li {
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+
+/* ==========================================================================
+   12. LOGO AND IMAGERY
+   ========================================================================== */
+
 .logo-glow {
-  filter: grayscale(70%) brightness(0.9);
-  transition: all 0.5s ease;
+  display: inline-block;
+  max-width: 100%;
+
+  transition:
+    filter var(--transition),
+    transform var(--transition);
 }
 
 .logo-glow:hover {
-  filter: grayscale(0%) brightness(1.3) drop-shadow(0 0 15px var(--quantum-cyan));
-  transform: scale(1.12);
+  filter: drop-shadow(0 0 12px rgba(67, 217, 232, 0.25));
+  transform: translateY(-2px);
 }
 
-/* Hero */
-.bg-gradient-hero {
-  background: linear-gradient(to bottom, rgba(10,0,31,0.92), rgba(26,0,77,0.8)),
-              radial-gradient(circle at 30% 20%, rgba(0,240,255,0.12), transparent 70%);
+/* ==========================================================================
+   13. CONTACT
+   ========================================================================== */
+
+.contact-panel {
+  padding: clamp(28px, 5vw, 55px);
+
+  background:
+    radial-gradient(
+      ellipse at 90% 10%,
+      rgba(67, 217, 232, 0.09),
+      transparent 50%
+    ),
+    var(--bg-surface);
+
+  border: 1px solid var(--border-highlight);
+  border-radius: var(--radius-lg);
 }
 
-/* Focus states for accessibility */
-button:focus-visible,
-a:focus-visible {
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  margin: 7px 14px 7px 0;
+
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   14. FOOTER
+   ========================================================================== */
+
+footer {
+  padding: 30px 0;
+
+  background: rgba(5, 9, 20, 0.8);
+
+  border-top: 1px solid var(--border-color);
+}
+
+footer p {
+  margin-bottom: 0;
+
+  color: var(--text-subtle);
+
+  font-size: 0.88rem;
+}
+
+/* ==========================================================================
+   15. ACCESSIBILITY
+   ========================================================================== */
+
+:focus-visible {
   outline: 3px solid var(--quantum-cyan);
   outline-offset: 4px;
 }
 
-/* Responsive typography */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 15px;
+  z-index: 9999;
+
+  padding: 12px 18px;
+
+  color: #061018;
+  background: var(--quantum-cyan);
+
+  border-radius: var(--radius-sm);
+}
+
+.skip-link:focus {
+  top: 15px;
+}
+
+/* ==========================================================================
+   16. BOOTSTRAP COMPATIBILITY
+   ========================================================================== */
+
+.bg-dark {
+  background-color: var(--bg-darker) !important;
+}
+
+.border-secondary {
+  border-color: var(--border-color) !important;
+}
+
+.text-info {
+  color: var(--quantum-cyan) !important;
+}
+
+hr {
+  border-color: var(--border-color);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   17. RESPONSIVE DESIGN
+   ========================================================================== */
+
 @media (max-width: 992px) {
-  .display-2 { font-size: 3.8rem; }
-  .display-3 { font-size: 3.2rem; }
+  .hero {
+    min-height: auto;
+    padding-block: 100px 75px;
+  }
+
+  .section {
+    padding-block: 72px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: min(100% - 30px, var(--content-width));
+  }
+
+  .hero {
+    padding-block: 85px 65px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .section {
+    padding-block: 58px;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+  }
 }
 
 @media (max-width: 576px) {
-  .display-2 { font-size: 2.8rem; letter-spacing: 1px; }
-  .lead { font-size: 1.2rem; }
+  h1 {
+    font-size: clamp(2.2rem, 11vw, 3.2rem);
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .lead {
+    font-size: 1.05rem;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  .contact-panel {
+    padding: 24px 19px;
+  }
 }
 
-/* Shimmer loading effect (add class .shimmer to cards if needed) */
-.shimmer::after {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 50%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-  animation: shimmer 2.5s infinite;
-}
+/* ==========================================================================
+   18. REDUCED MOTION
+   ========================================================================== */
 
-@keyframes shimmer {
-  0%   { left: -100%; }
-  100% { left: 200%; }
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .card:hover,
+  .logo-glow:hover,
+  .btn:hover {
+    transform: none;
+  }
 }
