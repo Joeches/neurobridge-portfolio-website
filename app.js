@@ -1,78 +1,111 @@
 
 /* ==========================================================================
    JOSEPH OCHELEBE — ENGINEERING PORTFOLIO
-   Vanilla JavaScript enhancements
-   Features:
-   - Accessible smooth scrolling
-   - Performance-conscious hero particle animation
-   - Reduced-motion support
-   - Visibility-aware animation
-   - Glitch visibility handling
-   - Accordion shimmer cleanup
-   - Online/offline awareness
+   File: statics/app.js
 
+   Features:
+   - Valid Person structured data for search engines
+   - Accessible same-page smooth scrolling
+   - Lightweight optional hero particle animation
+   - Reduced-motion support
+   - Visibility-aware animation lifecycle
+   - Bootstrap accordion shimmer cleanup
    ========================================================================== */
 
 (function () {
   "use strict";
 
-  /* ==========================================================================
-     1. CONFIGURATION AND UTILITIES
-     ========================================================================== */
-
   const CONFIG = {
-    particleCount: 38,
-    particleSpeed: 0.35,
-    particleMaxSize: 2,
-    particleOpacity: 0.45,
-    resizeDebounce: 180
+    portfolioUrl: "https://neurobridge-portfolio-website.netlify.app/",
+    particleCount: 36,
+    particleColor: "67, 217, 232"
   };
 
-  const prefersReducedMotion = window.matchMedia
-    ? window.matchMedia("(prefers-reduced-motion: reduce)")
-    : { matches: false };
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
 
   const utils = {
-    debounce(fn, wait = 100) {
+    debounce(callback, delay = 150) {
       let timeout;
 
-      return (...args) => {
+      return function (...args) {
         window.clearTimeout(timeout);
 
         timeout = window.setTimeout(() => {
-          fn(...args);
-        }, wait);
+          callback.apply(this, args);
+        }, delay);
       };
     },
 
-    isVisible(element) {
-      if (!element) return false;
-
-      const rect = element.getBoundingClientRect();
-
-      return (
-        rect.width > 0 &&
-        rect.height > 0 &&
-        rect.bottom > 0 &&
-        rect.right > 0 &&
-        rect.top < window.innerHeight &&
-        rect.left < window.innerWidth
-      );
+    isElement(value) {
+      return value instanceof Element;
     }
   };
 
   /* ==========================================================================
-     2. ACCESSIBLE SMOOTH SCROLLING
+     1. SEARCH ENGINE STRUCTURED DATA
+     ========================================================================== */
+
+  function injectSchemaMarkup() {
+    if (
+      document.getElementById("portfolio-person-schema") ||
+      document.querySelector('script[type="application/ld+json"]')
+    ) {
+      return;
+    }
+
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Joseph Ochelebe",
+      "url": CONFIG.portfolioUrl,
+      "jobTitle": "Software Engineer | AI and Autonomous Systems",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Abuja",
+        "addressCountry": "NG"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/joseph-ochelebe-15a09588",
+        "https://github.com/Joeches"
+      ],
+      "knowsAbout": [
+        "Software Engineering",
+        "Python Development",
+        "Backend Engineering",
+        "Artificial Intelligence",
+        "Autonomous Systems",
+        "Distributed Systems",
+        "Financial Document Intelligence",
+        "AI Agent Security",
+        "Cloud Infrastructure",
+        "Robotics",
+        "Energy Systems"
+      ]
+    };
+
+    const script = document.createElement("script");
+
+    script.id = "portfolio-person-schema";
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify(schema);
+
+    document.head.appendChild(script);
+  }
+
+  /* ==========================================================================
+     2. ACCESSIBLE SAME-PAGE NAVIGATION
      ========================================================================== */
 
   function initSmoothScroll() {
-    const anchors = document.querySelectorAll('a[href^="#"]');
-
-    anchors.forEach((anchor) => {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener("click", (event) => {
         const href = anchor.getAttribute("href");
 
-        if (!href || href === "#") return;
+        if (!href || href === "#") {
+          return;
+        }
 
         let target;
 
@@ -82,16 +115,7 @@
           return;
         }
 
-        if (!target) return;
-
-        // Preserve normal browser behavior for modified clicks.
-        if (
-          event.ctrlKey ||
-          event.metaKey ||
-          event.shiftKey ||
-          event.altKey ||
-          event.button !== 0
-        ) {
+        if (!target) {
           return;
         }
 
@@ -102,38 +126,42 @@
           block: "start"
         });
 
-        // Update the URL without causing an additional page jump.
-        if (history.replaceState) {
-          history.replaceState(null, "", href);
-        }
-
-        // Move keyboard focus to the destination when possible.
         if (!target.hasAttribute("tabindex")) {
           target.setAttribute("tabindex", "-1");
         }
 
-        target.focus({ preventScroll: true });
+        target.focus({
+          preventScroll: true
+        });
+
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, "", href);
+        }
       });
     });
   }
 
   /* ==========================================================================
-     3. HERO PARTICLE FIELD
+     3. OPTIONAL HERO PARTICLE ANIMATION
      ========================================================================== */
 
   function initQuantumParticles() {
     const hero = document.querySelector(".bg-gradient-hero");
 
-    if (!hero) return;
+    if (!hero || prefersReducedMotion.matches) {
+      return;
+    }
 
-    // Avoid decorative animation for visitors who request reduced motion.
-    if (prefersReducedMotion.matches) return;
+    if (typeof window.requestAnimationFrame !== "function") {
+      return;
+    }
 
-    // Avoid unnecessary work when the browser does not support canvas.
     const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
+    const context = canvas.getContext("2d");
 
-    if (!ctx) return;
+    if (!context) {
+      return;
+    }
 
     canvas.setAttribute("aria-hidden", "true");
 
@@ -143,50 +171,40 @@
       "width:100%",
       "height:100%",
       "pointer-events:none",
-      "z-index:0",
-      "opacity:0.45"
+      "z-index:0"
     ].join(";");
 
-    // Ensure hero content remains above the decorative canvas.
-    const originalPosition = window.getComputedStyle(hero).position;
+    const previousPosition = window.getComputedStyle(hero).position;
 
-    if (originalPosition === "static") {
+    if (previousPosition === "static") {
       hero.style.position = "relative";
     }
 
     hero.prepend(canvas);
 
-    Array.from(hero.children).forEach((child) => {
-      if (child === canvas) return;
-
-      child.style.position =
-        child.style.position || "relative";
-
-      child.style.zIndex =
-        child.style.zIndex || "1";
-    });
+    const particles = [];
 
     let width = 0;
     let height = 0;
     let animationFrame = null;
-    let particles = [];
-
-    let isPageVisible = !document.hidden;
-    let isHeroVisible = false;
+    let isVisible = true;
     let isRunning = false;
 
-    const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+    const particleCount = window.innerWidth < 600
+      ? Math.min(CONFIG.particleCount, 18)
+      : CONFIG.particleCount;
 
-    function resize() {
-      const rect = hero.getBoundingClientRect();
+    function resizeCanvas() {
+      const bounds = hero.getBoundingClientRect();
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
 
-      width = Math.max(1, rect.width);
-      height = Math.max(1, rect.height);
+      width = Math.max(1, bounds.width);
+      height = Math.max(1, bounds.height);
 
       canvas.width = Math.round(width * pixelRatio);
       canvas.height = Math.round(height * pixelRatio);
 
-      ctx.setTransform(
+      context.setTransform(
         pixelRatio,
         0,
         0,
@@ -194,107 +212,88 @@
         0,
         0
       );
-
-      particles.forEach((particle) => {
-        particle.x = Math.min(particle.x, width);
-        particle.y = Math.min(particle.y, height);
-      });
     }
 
-    class QuantumParticle {
+    class Particle {
       constructor() {
-        this.reset();
+        this.reset(true);
       }
 
-      reset() {
+      reset(initial = false) {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
 
-        this.size =
-          Math.random() * CONFIG.particleMaxSize + 0.5;
+        this.radius = Math.random() * 1.5 + 0.5;
 
-        this.vx =
-          (Math.random() - 0.5) * CONFIG.particleSpeed;
+        this.velocityX = (Math.random() - 0.5) * 0.28;
+        this.velocityY = (Math.random() - 0.5) * 0.28;
 
-        this.vy =
-          (Math.random() - 0.5) * CONFIG.particleSpeed;
+        this.opacity = Math.random() * 0.35 + 0.12;
 
-        this.opacity =
-          Math.random() * CONFIG.particleOpacity + 0.1;
-
-        this.hue =
-          180 + Math.random() * 55;
-
-        this.life = 0.5 + Math.random() * 0.5;
+        if (!initial) {
+          this.opacity *= 0.8;
+        }
       }
 
       update() {
-        this.x += this.vx;
-        this.y += this.vy;
+        this.x += this.velocityX;
+        this.y += this.velocityY;
 
         if (this.x < 0 || this.x > width) {
-          this.vx *= -1;
+          this.velocityX *= -1;
         }
 
         if (this.y < 0 || this.y > height) {
-          this.vy *= -1;
-        }
-
-        this.life -= 0.0005;
-
-        if (this.life <= 0) {
-          this.reset();
+          this.velocityY *= -1;
         }
       }
 
       draw() {
-        ctx.save();
+        context.beginPath();
 
-        ctx.globalAlpha = this.opacity * this.life;
-
-        ctx.fillStyle =
-          `hsla(${this.hue}, 90%, 70%, 1)`;
-
-        ctx.beginPath();
-
-        ctx.arc(
+        context.arc(
           this.x,
           this.y,
-          this.size,
+          this.radius,
           0,
           Math.PI * 2
         );
 
-        ctx.fill();
+        context.fillStyle =
+          `rgba(${CONFIG.particleColor}, ${this.opacity})`;
 
-        ctx.restore();
+        context.fill();
       }
     }
 
-    function drawParticles() {
-      ctx.clearRect(0, 0, width, height);
+    function drawFrame() {
+      if (!isRunning || !isVisible || document.hidden) {
+        stopAnimation();
+        return;
+      }
+
+      context.clearRect(0, 0, width, height);
 
       particles.forEach((particle) => {
         particle.update();
         particle.draw();
       });
-    }
 
-    function animate() {
-      if (!isRunning) return;
-
-      drawParticles();
-
-      animationFrame = window.requestAnimationFrame(animate);
+      animationFrame = window.requestAnimationFrame(drawFrame);
     }
 
     function startAnimation() {
-      if (isRunning) return;
-
-      if (!isPageVisible || !isHeroVisible) return;
+      if (
+        isRunning ||
+        !isVisible ||
+        document.hidden ||
+        prefersReducedMotion.matches
+      ) {
+        return;
+      }
 
       isRunning = true;
-      animationFrame = window.requestAnimationFrame(animate);
+      animationFrame = window.requestAnimationFrame(drawFrame);
     }
 
     function stopAnimation() {
@@ -306,82 +305,82 @@
       }
     }
 
-    function updateAnimationState() {
-      if (isPageVisible && isHeroVisible) {
-        startAnimation();
-      } else {
+    function handleVisibilityChange() {
+      if (document.hidden) {
         stopAnimation();
+      } else {
+        startAnimation();
       }
     }
 
-    resize();
-
-    particles = Array.from(
-      { length: CONFIG.particleCount },
-      () => new QuantumParticle()
-    );
-
-    // Detect whether the hero is visible before animating.
-    if ("IntersectionObserver" in window) {
-      const heroObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            isHeroVisible = entry.isIntersecting;
-          });
-
-          updateAnimationState();
-        },
-        { threshold: 0.05 }
-      );
-
-      heroObserver.observe(hero);
-    } else {
-      isHeroVisible = utils.isVisible(hero);
+    function handleMotionPreferenceChange(event) {
+      if (event.matches) {
+        stopAnimation();
+        canvas.remove();
+      }
     }
 
-    // Pause the animation when the browser tab is hidden.
-    document.addEventListener("visibilitychange", () => {
-      isPageVisible = !document.hidden;
-      updateAnimationState();
-    });
+    const observer = "IntersectionObserver" in window
+      ? new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            isVisible = entry.isIntersecting;
 
-    // Respond to browser resizing.
+            if (isVisible) {
+              startAnimation();
+            } else {
+              stopAnimation();
+            }
+          });
+        }, {
+          threshold: 0
+        })
+      : null;
+
+    resizeCanvas();
+
+    for (let index = 0; index < particleCount; index += 1) {
+      particles.push(new Particle());
+    }
+
     window.addEventListener(
       "resize",
-      utils.debounce(resize, CONFIG.resizeDebounce),
+      utils.debounce(resizeCanvas, 180),
       { passive: true }
     );
 
-    // Monitor layout changes when supported.
-    if ("ResizeObserver" in window) {
-      const resizeObserver = new ResizeObserver(
-        utils.debounce(resize, CONFIG.resizeDebounce)
-      );
+    document.addEventListener(
+      "visibilitychange",
+      handleVisibilityChange
+    );
 
-      resizeObserver.observe(hero);
+    if (typeof prefersReducedMotion.addEventListener === "function") {
+      prefersReducedMotion.addEventListener(
+        "change",
+        handleMotionPreferenceChange
+      );
     }
 
-    updateAnimationState();
+    if (observer) {
+      observer.observe(hero);
+    }
+
+    startAnimation();
   }
 
   /* ==========================================================================
-     4. GLITCH VISIBILITY HANDLING
+     4. GLITCH EFFECT VISIBILITY
      ========================================================================== */
 
   function initGlitchTriggers() {
-    const glitchElements = document.querySelectorAll(".glitch");
+    const elements = document.querySelectorAll(".glitch");
 
-    if (!glitchElements.length) return;
-
-    if (prefersReducedMotion.matches) {
-      glitchElements.forEach((element) => {
-        element.classList.remove("glitch-active");
-      });
-
+    if (!elements.length || !("IntersectionObserver" in window)) {
       return;
     }
 
-    if (!("IntersectionObserver" in window)) return;
+    if (prefersReducedMotion.matches) {
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -393,52 +392,56 @@
         });
       },
       {
-        threshold: 0.4,
-        rootMargin: "0px 0px -10% 0px"
+        threshold: 0.25,
+        rootMargin: "0px 0px -8% 0px"
       }
     );
 
-    glitchElements.forEach((element) => {
+    elements.forEach((element) => {
       observer.observe(element);
     });
   }
 
   /* ==========================================================================
-     5. ACCORDION SHIMMER CLEANUP
+     5. BOOTSTRAP ACCORDION ENHANCEMENTS
      ========================================================================== */
 
-  function initShimmerControl() {
-    const accordionButtons = document.querySelectorAll(
-      ".accordion-button"
-    );
+  function initAccordionEnhancements() {
+    const accordions = document.querySelectorAll(".accordion");
 
-    accordionButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const item = button.closest(".accordion-item");
+    if (!accordions.length) {
+      return;
+    }
 
-        if (!item) return;
+    accordions.forEach((accordion) => {
+      accordion.addEventListener("shown.bs.collapse", (event) => {
+        const item = event.target.closest(".accordion-item");
 
-        // Stop the shimmer after the accordion interaction.
-        window.setTimeout(() => {
-          item.classList.remove("shimmer");
-        }, 800);
+        if (!item) {
+          return;
+        }
+
+        item.classList.remove("shimmer");
       });
     });
   }
 
   /* ==========================================================================
-     6. NETWORK STATUS AWARENESS
+     6. EXTERNAL LINK SAFETY
      ========================================================================== */
 
-  function initNetworkAwareness() {
-    window.addEventListener("offline", () => {
-      console.warn(
-        "Network connection unavailable. Some external resources may not load."
+  function initExternalLinks() {
+    document.querySelectorAll('a[target="_blank"]').forEach((link) => {
+      const relValues = new Set(
+        (link.getAttribute("rel") || "")
+          .split(/\s+/)
+          .filter(Boolean)
       );
-    });
 
-    window.addEventListener("online", () => {
-      console.info("Network connection restored.");
+      relValues.add("noopener");
+      relValues.add("noreferrer");
+
+      link.setAttribute("rel", [...relValues].join(" "));
     });
   }
 
@@ -447,15 +450,20 @@
      ========================================================================== */
 
   function init() {
+    injectSchemaMarkup();
     initSmoothScroll();
     initQuantumParticles();
     initGlitchTriggers();
-    initShimmerControl();
-    initNetworkAwareness();
+    initAccordionEnhancements();
+    initExternalLinks();
 
-    console.info(
-      "Engineering portfolio initialized successfully."
-    );
+    window.addEventListener("offline", () => {
+      console.warn("Network connection unavailable.");
+    });
+
+    window.addEventListener("online", () => {
+      console.info("Network connection restored.");
+    });
   }
 
   if (document.readyState === "loading") {
