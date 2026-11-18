@@ -1,13 +1,20 @@
 
 /* ==========================================================================
-   JOSEPH OCHELEBE — PROFESSIONAL ENGINEERING PORTFOLIO
-   Shared stylesheet: statics/styles.css
-   Design: Professional dark interface with subtle quantum-inspired accents
-   Responsive | Accessible | Performance-conscious
+   JOSEPH OCHELEBE — ENGINEERING PORTFOLIO
+   Professional dark interface | Responsive | Accessible
+   Shared styles for index.html and templates/projects-dashboard.html
+
+   Version: 3.0
+   Focus:
+   - Consistent portfolio design
+   - Robust project-card layout
+   - No overlapping headings, descriptions or links
+   - Responsive desktop, tablet and mobile layouts
+   - Accessible interactions and reduced-motion support
    ========================================================================== */
 
 /* ==========================================================================
-   1. DESIGN TOKENS
+   01. DESIGN TOKENS
    ========================================================================== */
 
 :root {
@@ -22,6 +29,7 @@
   --bg-darker: #050914;
   --bg-surface: #101827;
   --bg-surface-light: #162236;
+  --bg-surface-hover: #1a2940;
 
   --text-light: #edf3fc;
   --text-muted: #a8b5c9;
@@ -39,10 +47,16 @@
   --content-width: 1160px;
 
   --transition: 180ms ease;
+
+  --shadow-card:
+    0 12px 35px rgba(0, 0, 0, 0.16);
+
+  --shadow-card-hover:
+    0 18px 42px rgba(0, 0, 0, 0.23);
 }
 
 /* ==========================================================================
-   2. RESET AND GLOBAL BASE
+   02. RESET AND BASE
    ========================================================================== */
 
 *,
@@ -54,6 +68,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 90px;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -117,7 +132,9 @@ body::before {
 }
 
 img,
-svg {
+svg,
+video,
+canvas {
   max-width: 100%;
 }
 
@@ -152,8 +169,25 @@ a {
   background: var(--quantum-cyan);
 }
 
+/* Prevent long technical names and URLs from breaking layouts. */
+
+p,
+li,
+span,
+small,
+strong,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
 /* ==========================================================================
-   3. TYPOGRAPHY
+   03. TYPOGRAPHY
    ========================================================================== */
 
 h1,
@@ -190,6 +224,18 @@ h3 {
   font-size: clamp(1.2rem, 2vw, 1.55rem);
 }
 
+h4 {
+  font-size: 1.12rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+h6 {
+  font-size: 0.92rem;
+}
+
 p {
   color: var(--text-muted);
 }
@@ -206,6 +252,10 @@ p {
 
 .text-white {
   color: var(--text-light) !important;
+}
+
+.text-info {
+  color: var(--quantum-cyan) !important;
 }
 
 .neon-text {
@@ -230,7 +280,7 @@ p {
 }
 
 /* ==========================================================================
-   4. LAYOUT HELPERS
+   04. LAYOUT HELPERS
    ========================================================================== */
 
 .container {
@@ -272,35 +322,44 @@ p {
   content: "";
   width: 22px;
   height: 1px;
+  flex: 0 0 22px;
   background: var(--quantum-cyan);
 }
 
 /* ==========================================================================
-   5. NAVIGATION
+   05. NAVIGATION
    ========================================================================== */
 
 .navbar {
   background: rgba(5, 9, 20, 0.88);
   border-bottom: 1px solid var(--border-color);
-
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
 
 .navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+
   color: var(--text-light) !important;
   font-weight: 750;
   letter-spacing: -0.025em;
 }
 
+.navbar-brand img {
+  display: block;
+  flex: 0 0 auto;
+  max-height: 42px;
+  width: auto;
+  object-fit: contain;
+}
+
 .navbar-nav .nav-link {
   padding-inline: 14px;
-
   color: var(--text-muted) !important;
-
   font-size: 0.92rem;
   font-weight: 550;
-
   transition: color var(--transition);
 }
 
@@ -318,7 +377,7 @@ p {
 }
 
 /* ==========================================================================
-   6. HERO
+   06. HERO
    ========================================================================== */
 
 .bg-gradient-hero {
@@ -344,15 +403,15 @@ p {
 }
 
 .hero {
-  min-height: min(780px, 90vh);
-
   display: flex;
   align-items: center;
 
+  min-height: min(780px, 90vh);
   padding-block: 100px 80px;
 }
 
 .hero-content {
+  width: 100%;
   max-width: 850px;
 }
 
@@ -372,14 +431,26 @@ p {
 }
 
 /* ==========================================================================
-   7. BUTTONS
+   07. BUTTONS
    ========================================================================== */
 
 .btn {
-  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  max-width: 100%;
+  min-height: 44px;
+
   padding: 11px 21px;
 
+  border-radius: 10px;
+
   font-weight: 650;
+  line-height: 1.4;
+  white-space: normal;
+  overflow-wrap: anywhere;
 
   transition:
     background var(--transition),
@@ -399,7 +470,6 @@ p {
   );
 
   border: 1px solid transparent;
-
   font-weight: 750;
 
   box-shadow: 0 5px 22px rgba(67, 217, 232, 0.12);
@@ -409,17 +479,13 @@ p {
 .btn-cyan:focus {
   color: #061018;
   background: #a0f3f7;
-
   transform: translateY(-2px);
-
   box-shadow: 0 9px 28px rgba(67, 217, 232, 0.2);
 }
 
 .btn-outline-magenta {
   color: var(--quantum-magenta);
-
   border: 1px solid rgba(217, 139, 223, 0.55);
-
   background: transparent;
 }
 
@@ -442,12 +508,20 @@ p {
 }
 
 /* ==========================================================================
-   8. CARDS
+   08. GENERAL CARDS
    ========================================================================== */
 
 .card {
   position: relative;
+  isolation: isolate;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 0;
   height: 100%;
+
   overflow: hidden;
 
   color: var(--text-light);
@@ -461,7 +535,7 @@ p {
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
 
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
+  box-shadow: var(--shadow-card);
 
   transition:
     border-color var(--transition),
@@ -471,19 +545,17 @@ p {
 
 .card:hover {
   transform: translateY(-5px);
-
   border-color: var(--border-highlight);
-
   box-shadow:
     var(--glow-cyan),
-    0 18px 42px rgba(0, 0, 0, 0.23);
+    var(--shadow-card-hover);
 }
 
 .card::before {
   content: "";
-
   position: absolute;
   inset: 0 0 auto;
+  z-index: -1;
 
   height: 2px;
 
@@ -496,9 +568,7 @@ p {
   );
 
   opacity: 0;
-
   transition: opacity var(--transition);
-
   pointer-events: none;
 }
 
@@ -507,57 +577,323 @@ p {
 }
 
 .card-body {
+  width: 100%;
+  min-width: 0;
   padding: clamp(20px, 3vw, 30px);
 }
 
 .card-title {
   color: var(--text-light);
+  overflow-wrap: anywhere;
 }
 
 .card-text {
   color: var(--text-muted);
+  line-height: 1.75;
 }
 
 /* ==========================================================================
-   9. PROJECT CARDS
+   09. PROJECT CARDS — OVERLAP-PROOF LAYOUT
+   Applies to NeuroBridge and AgentShield.
+
+   Important:
+   - Normal document flow is enforced.
+   - No absolute positioning for card content.
+   - Titles and descriptions retain natural height.
+   - Links remain below descriptions.
+   - Grid columns stretch consistently.
    ========================================================================== */
 
+/* Main project card */
+
 .project-card {
-  display: flex;
-  flex-direction: column;
+  position: relative;
+
+  display: flex !important;
+  flex-direction: column !important;
+
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+
+  overflow: hidden;
+
+  isolation: isolate;
 }
+
+/* Card content */
 
 .project-card .card-body {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
+  position: relative !important;
+
+  display: flex !important;
+  flex: 1 1 auto;
+  flex-direction: column !important;
+  align-items: stretch !important;
+
+  width: 100%;
+  min-width: 0;
+  height: auto !important;
+  min-height: 0;
+
+  padding: clamp(22px, 3vw, 32px);
+
+  gap: 0;
 }
+
+/* Restore natural layout flow for all direct content elements. */
+
+.project-card .card-body > * {
+  position: relative !important;
+  inset: auto !important;
+
+  float: none !important;
+
+  min-width: 0;
+  max-width: 100%;
+
+  box-sizing: border-box;
+}
+
+/* Project icons */
+
+.project-card .project-icon {
+  position: relative !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  width: 100%;
+  height: auto !important;
+  min-height: 0;
+
+  margin: 0 0 18px;
+  padding: 0;
+}
+
+.project-card .project-icon img,
+.project-card .project-icon svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Project labels and status */
+
+.project-card .project-state,
+.project-card .project-status {
+  position: relative !important;
+
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+
+  width: fit-content;
+  max-width: 100%;
+  height: auto !important;
+
+  margin: 0 0 16px;
+  padding: 5px 11px;
+
+  line-height: 1.5;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Project titles */
+
+.project-card .card-title,
+.project-card h2,
+.project-card h3,
+.project-card h4 {
+  position: relative !important;
+
+  display: block;
+
+  width: 100%;
+  max-width: 100%;
+
+  height: auto !important;
+  min-height: 0;
+
+  margin: 0 0 16px;
+  padding: 0;
+
+  color: var(--text-light);
+
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  font-weight: 750;
+  line-height: 1.35;
+
+  letter-spacing: -0.025em;
+
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+/* Project descriptions */
+
+.project-card .card-text,
+.project-card .project-description {
+  position: relative !important;
+
+  display: block;
+
+  width: 100%;
+  max-width: 100%;
+
+  height: auto !important;
+  min-height: 0;
+
+  margin: 0 0 20px;
+  padding: 0;
+
+  color: var(--text-muted);
+
+  font-size: 0.96rem;
+  line-height: 1.8;
+
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+/* Project metadata */
+
+.project-card .project-meta,
+.project-card .project-details {
+  position: relative !important;
+
+  display: block;
+
+  width: 100%;
+  max-width: 100%;
+
+  height: auto !important;
+  min-height: 0;
+
+  margin: 0 0 18px;
+  padding: 0;
+
+  color: var(--text-muted);
+  line-height: 1.75;
+
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Nested metadata must also wrap. */
+
+.project-card .project-meta *,
+.project-card .project-details * {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Project links */
 
 .project-card .project-links {
+  position: relative !important;
+
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  gap: 10px;
+  align-items: center;
+
+  width: 100%;
+  max-width: 100%;
+
+  height: auto !important;
+  min-height: 0;
+
+  gap: 12px;
 
   margin-top: auto;
-  padding-top: 20px;
+  padding-top: 22px;
+
+  white-space: normal;
 }
 
+.project-card .project-links a,
+.project-card .project-links button {
+  position: relative !important;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  max-width: 100%;
+  min-height: 42px;
+
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+/* Project images */
+
 .project-image {
+  display: block;
+
   width: 100%;
   aspect-ratio: 16 / 9;
 
   object-fit: cover;
 
   background: var(--bg-surface);
-
   border-bottom: 1px solid var(--border-color);
 }
+
+/* Project card grid support */
+
+.project-dashboard,
+.projects-grid {
+  width: 100%;
+  min-width: 0;
+}
+
+.project-dashboard .row,
+.projects-grid .row {
+  align-items: stretch;
+}
+
+.project-dashboard .row > *,
+.projects-grid .row > * {
+  display: flex;
+  min-width: 0;
+}
+
+.project-dashboard .project-card,
+.projects-grid .project-card {
+  width: 100%;
+}
+
+/* Generic Bootstrap grid support for project cards. */
+
+.row > [class*="col"] {
+  min-width: 0;
+}
+
+.row > [class*="col"] > .project-card {
+  width: 100%;
+}
+
+/* ==========================================================================
+   10. PROJECT TAGS AND TECHNOLOGY BADGES
+   ========================================================================== */
 
 .project-tag,
 .skill-tag,
 .tech-badge {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+
+  max-width: 100%;
 
   margin: 4px 5px 4px 0;
   padding: 5px 11px;
@@ -565,13 +901,15 @@ p {
   color: #bceff3;
 
   background: rgba(67, 217, 232, 0.07);
-
   border: 1px solid rgba(67, 217, 232, 0.2);
   border-radius: 999px;
 
   font-size: 0.77rem;
   font-weight: 600;
   line-height: 1.5;
+
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .project-status {
@@ -582,9 +920,7 @@ p {
   padding: 5px 10px;
 
   color: #c6d7eb;
-
   background: rgba(157, 180, 210, 0.08);
-
   border: 1px solid var(--border-color);
   border-radius: 999px;
 
@@ -593,15 +929,17 @@ p {
 }
 
 /* ==========================================================================
-   10. SKILLS AND EXPERTISE
+   11. SKILLS AND EXPERTISE
    ========================================================================== */
 
 .skill-group {
+  width: 100%;
+  min-width: 0;
   height: 100%;
+
   padding: 22px;
 
   background: rgba(16, 24, 39, 0.72);
-
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
 }
@@ -621,30 +959,34 @@ p {
 }
 
 /* ==========================================================================
-   11. ARCHITECTURE AND TECHNICAL EVIDENCE
+   12. ARCHITECTURE AND TECHNICAL EVIDENCE
    ========================================================================== */
 
 .architecture-panel,
 .evidence-panel {
+  width: 100%;
+  min-width: 0;
+
   padding: clamp(20px, 3vw, 30px);
 
   background: rgba(16, 24, 39, 0.85);
-
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
 }
 
 .architecture-step {
+  min-width: 0;
+
   padding: 13px 16px;
 
   color: var(--text-light);
-
   background: var(--bg-surface-light);
 
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
 
   text-align: center;
+  overflow-wrap: anywhere;
 }
 
 .architecture-arrow {
@@ -661,19 +1003,28 @@ p {
 .evidence-list li {
   margin-bottom: 10px;
   padding-left: 5px;
+  line-height: 1.75;
 }
 
 /* ==========================================================================
-   12. LOGO AND IMAGERY
+   13. LOGO AND IMAGERY
    ========================================================================== */
 
 .logo-glow {
   display: inline-block;
+
   max-width: 100%;
 
   transition:
     filter var(--transition),
     transform var(--transition);
+}
+
+.logo-glow img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .logo-glow:hover {
@@ -682,10 +1033,13 @@ p {
 }
 
 /* ==========================================================================
-   13. CONTACT
+   14. CONTACT
    ========================================================================== */
 
 .contact-panel {
+  width: 100%;
+  min-width: 0;
+
   padding: clamp(28px, 5vw, 55px);
 
   background:
@@ -705,33 +1059,33 @@ p {
   align-items: center;
   gap: 9px;
 
+  max-width: 100%;
+
   margin: 7px 14px 7px 0;
 
   font-weight: 600;
+  overflow-wrap: anywhere;
 }
 
 /* ==========================================================================
-   14. FOOTER
+   15. FOOTER
    ========================================================================== */
 
 footer {
   padding: 30px 0;
 
   background: rgba(5, 9, 20, 0.8);
-
   border-top: 1px solid var(--border-color);
 }
 
 footer p {
   margin-bottom: 0;
-
   color: var(--text-subtle);
-
   font-size: 0.88rem;
 }
 
 /* ==========================================================================
-   15. ACCESSIBILITY
+   16. FOCUS AND ACCESSIBILITY
    ========================================================================== */
 
 :focus-visible {
@@ -763,7 +1117,7 @@ button:focus:not(:focus-visible) {
 }
 
 /* ==========================================================================
-   16. BOOTSTRAP COMPATIBILITY
+   17. BOOTSTRAP COMPATIBILITY
    ========================================================================== */
 
 .bg-dark {
@@ -783,8 +1137,17 @@ hr {
   opacity: 1;
 }
 
+/* Prevent Bootstrap's default grid children from overflowing. */
+
+.container,
+.container-fluid,
+.row,
+[class*="col-"] {
+  min-width: 0;
+}
+
 /* ==========================================================================
-   17. RESPONSIVE DESIGN
+   18. RESPONSIVE — TABLET
    ========================================================================== */
 
 @media (max-width: 992px) {
@@ -796,7 +1159,15 @@ hr {
   .section {
     padding-block: 72px;
   }
+
+  .project-card .card-body {
+    padding: 25px;
+  }
 }
+
+/* ==========================================================================
+   19. RESPONSIVE — MOBILE
+   ========================================================================== */
 
 @media (max-width: 768px) {
   .container {
@@ -824,7 +1195,19 @@ hr {
   .card:hover {
     transform: translateY(-2px);
   }
+
+  .project-card .card-body {
+    padding: 22px;
+  }
+
+  .project-card .project-links {
+    gap: 10px;
+  }
 }
+
+/* ==========================================================================
+   20. RESPONSIVE — SMALL MOBILE
+   ========================================================================== */
 
 @media (max-width: 576px) {
   h1 {
@@ -843,13 +1226,67 @@ hr {
     padding: 20px;
   }
 
+  .project-card .card-body {
+    padding: 20px;
+  }
+
+  .project-card .card-title,
+  .project-card h2,
+  .project-card h3,
+  .project-card h4 {
+    font-size: 1.3rem;
+    line-height: 1.4;
+  }
+
+  .project-card .project-description,
+  .project-card .card-text {
+    font-size: 0.93rem;
+    line-height: 1.75;
+  }
+
+  .project-card .project-links {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .project-card .project-links a,
+  .project-card .project-links button {
+    width: 100%;
+    text-align: center;
+  }
+
   .contact-panel {
     padding: 24px 19px;
   }
 }
 
 /* ==========================================================================
-   18. REDUCED MOTION
+   21. EXTRA SMALL SCREENS
+   ========================================================================== */
+
+@media (max-width: 360px) {
+  .container {
+    width: min(100% - 24px, var(--content-width));
+  }
+
+  .project-card .card-body {
+    padding: 17px;
+  }
+
+  .project-card .project-title,
+  .project-card .card-title {
+    font-size: 1.2rem;
+  }
+
+  .project-tag,
+  .skill-tag,
+  .tech-badge {
+    font-size: 0.72rem;
+  }
+}
+
+/* ==========================================================================
+   22. REDUCED MOTION
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
