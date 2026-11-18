@@ -7,7 +7,7 @@
 
   <title>Joseph Ochelebe | Software Engineer & AI Systems Architect</title>
 
-  <meta name="description" content="Joseph Ochelebe is a software engineer building AI infrastructure, autonomous systems, distributed platforms and intelligent software applications.">
+  <meta name="description" content="Joseph Ochelebe is a software engineer building Python applications, AI infrastructure, autonomous systems, distributed platforms and intelligent software solutions.">
   <meta name="keywords" content="Joseph Ochelebe, Software Engineer, Python Developer, AI Systems Architect, Backend Engineer, Distributed Systems, Cloud Engineering, Robotics, NeuroBridge, AgentShield">
   <meta name="author" content="Joseph Ochelebe">
   <meta name="robots" content="index, follow">
@@ -118,7 +118,8 @@
       content: "";
       position: absolute;
       inset: 0;
-      background-image: linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+      background-image:
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
       background-size: 55px 55px;
       pointer-events: none;
@@ -367,6 +368,13 @@
       color: #06131d;
     }
 
+    #back-to-top:focus-visible,
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid #91eff5;
+      outline-offset: 3px;
+    }
+
     @media (max-width: 768px) {
       .hero {
         min-height: auto;
@@ -409,11 +417,16 @@
     "@type": "Person",
     "name": "Joseph Ochelebe",
     "url": "https://neurobridge-portfolio-website.netlify.app/",
-    "jobTitle": "Software Engineer and AI Systems Architect",
+    "jobTitle": "Software Engineer | AI and Autonomous Systems Engineer",
     "sameAs": [
       "https://www.linkedin.com/in/joseph-ochelebe-15a09588",
       "https://github.com/Joeches"
     ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Abuja",
+      "addressCountry": "NG"
+    },
     "knowsAbout": [
       "Python Software Engineering",
       "Backend Development",
@@ -422,7 +435,10 @@
       "Cloud Engineering",
       "Autonomous Systems",
       "Robotics",
-      "Machine Learning"
+      "Machine Learning",
+      "React",
+      "Next.js",
+      "Energy Systems"
     ]
   }
   </script>
@@ -527,7 +543,7 @@
           </h2>
 
           <p class="muted">
-            I am a software engineer with extensive hands-on experience
+            I am a software engineer with hands-on experience
             developing Python applications, backend services, intelligent
             platforms and technology-driven solutions.
           </p>
@@ -668,7 +684,7 @@
 
               <div class="d-flex flex-wrap gap-2">
 
-                <a href="https://neurobridge-portfolio-website.netlify.app"
+                <a href="https://neurobridge-portfolio-website.netlify.app/"
                   target="_blank" rel="noopener noreferrer"
                   class="btn btn-accent">
                   <i class="fas fa-external-link-alt me-2"></i>Project Portfolio
@@ -775,7 +791,8 @@
 
       <div class="text-center mt-5">
 
-        <a href="/projects-dashboard.html"
+        <!-- Canonical dashboard location -->
+        <a href="/templates/projects-dashboard.html"
           class="btn btn-outline-accent">
           Explore Detailed Project Portfolio
           <i class="fas fa-arrow-right ms-2"></i>
@@ -1085,54 +1102,66 @@
     <i class="fab fa-whatsapp"></i>
   </a>
 
-  <button id="back-to-top" aria-label="Back to top">
+  <button id="back-to-top" type="button" aria-label="Back to top">
     <i class="fas fa-arrow-up"></i>
   </button>
 
   <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-
   <script src="/statics/app.js"></script>
 
   <script>
-    document.getElementById("current-year").textContent =
-      new Date().getFullYear();
+    (() => {
+      "use strict";
 
-    const backToTop = document.getElementById("back-to-top");
+      const yearElement = document.getElementById("current-year");
+      if (yearElement) {
+        yearElement.textContent = String(new Date().getFullYear());
+      }
 
-    window.addEventListener("scroll", () => {
-      backToTop.style.display =
-        window.scrollY > 350 ? "block" : "none";
-    });
+      const backToTop = document.getElementById("back-to-top");
 
-    backToTop.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    });
+      if (backToTop) {
+        const updateBackToTop = () => {
+          backToTop.style.display =
+            window.scrollY > 350 ? "grid" : "none";
+        };
 
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener("click", event => {
-        const target = document.querySelector(
-          link.getAttribute("href")
-        );
+        window.addEventListener("scroll", updateBackToTop, {
+          passive: true
+        });
 
-        if (target) {
-          event.preventDefault();
-          target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
+        updateBackToTop();
+
+        backToTop.addEventListener("click", () => {
+          window.scrollTo({
+            top: 0,
+            behavior: window.matchMedia(
+              "(prefers-reduced-motion: reduce)"
+            ).matches ? "auto" : "smooth"
           });
+        });
+      }
 
-          const navbar = document.querySelector(".navbar-collapse");
+      // Close the mobile menu after selecting an in-page link.
+      document.querySelectorAll('#navbarNav a[href^="#"]').forEach(link => {
+        link.addEventListener("click", () => {
+          const navbar = document.getElementById("navbarNav");
 
-          if (navbar && navbar.classList.contains("show")) {
-            bootstrap.Collapse.getOrCreateInstance(navbar).hide();
+          if (
+            navbar &&
+            navbar.classList.contains("show") &&
+            window.bootstrap &&
+            window.bootstrap.Collapse
+          ) {
+            window.bootstrap.Collapse
+              .getOrCreateInstance(navbar)
+              .hide();
           }
-        }
+        });
       });
-    });
+
+    })();
   </script>
 
 </body>
