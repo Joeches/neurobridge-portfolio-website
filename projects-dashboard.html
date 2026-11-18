@@ -1,308 +1,997 @@
+
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Detailed Quantum Portfolio Dashboard – Joseph Ochelebe | Founder & CTO NeuroBridge Technologies Ltd | Quantum Kernels, Hybrid Simulation, Generative AI Synergies">
-  <title>Portfolio Dashboard | Joseph Ochelebe – NeuroBridge Technologies Ltd</title>
 
-  <!-- Google Fonts: Orbitron -->
+  <title>Engineering Projects | Joseph Ochelebe</title>
+
+  <meta name="description" content="Explore engineering case studies by Joseph Ochelebe, including NeuroBridge Energy Intelligence and AgentShield AI Agent Security.">
+  <meta name="author" content="Joseph Ochelebe">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0b1220">
+
+  <link rel="canonical" href="https://neurobridge-portfolio-website.netlify.app/projects-dashboard.html">
+
+  <meta property="og:title" content="Engineering Projects | Joseph Ochelebe">
+  <meta property="og:description" content="Software engineering, AI infrastructure, autonomous systems and security engineering case studies.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://neurobridge-portfolio-website.netlify.app/projects-dashboard.html">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Bootstrap 5.3 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-  <!-- Font Awesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/statics/styles.css">
+  <link rel="manifest" href="/statics/manifest.json">
 
-  <!-- Custom Styles (latest enhanced version) -->
-  <link rel="stylesheet" href="../statics/styles.css">
+  <style>
+    :root {
+      --bg: #0b1220;
+      --surface: #111c2e;
+      --surface2: #17243a;
+      --accent: #42d9e8;
+      --accent-soft: rgba(66, 217, 232, 0.12);
+      --text: #e8eef7;
+      --muted: #9aabc0;
+      --border: rgba(148, 163, 184, 0.17);
+    }
 
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="../statics/manifest.json">
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 95px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.75;
+    }
+
+    h1, h2, h3, h4, h5, .navbar-brand {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .navbar {
+      background: rgba(11,18,32,.96) !important;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+    }
+
+    .navbar-brand img {
+      height: 34px;
+      width: auto;
+    }
+
+    .nav-link {
+      color: #bdc9d8 !important;
+    }
+
+    .nav-link:hover {
+      color: var(--accent) !important;
+    }
+
+    .hero {
+      padding: 155px 0 90px;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(22,119,145,.18), transparent 45%),
+        radial-gradient(ellipse at 10% 90%, rgba(40,78,135,.15), transparent 45%),
+        var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: .76rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      letter-spacing: -2px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg,#42d9e8,#91bfff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-dark {
+      background: #080e19;
+    }
+
+    .section-title {
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #06131d;
+      border: 1px solid var(--accent);
+      font-weight: 700;
+      padding: 11px 22px;
+      border-radius: 7px;
+    }
+
+    .btn-accent:hover {
+      background: #91eff5;
+      color: #06131d;
+    }
+
+    .btn-outline-accent {
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 11px 22px;
+      border-radius: 7px;
+      font-weight: 600;
+    }
+
+    .btn-outline-accent:hover {
+      background: var(--accent-soft);
+      color: white;
+    }
+
+    .case-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      height: 100%;
+    }
+
+    .case-card:hover {
+      border-color: rgba(66,217,232,.55);
+    }
+
+    .case-icon {
+      height: 55px;
+      width: 55px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: var(--accent);
+      background: var(--accent-soft);
+      font-size: 1.5rem;
+    }
+
+    .case-label {
+      color: var(--accent);
+      font-size: .75rem;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+    }
+
+    .tech-tag {
+      display: inline-block;
+      padding: 5px 10px;
+      margin: 4px 3px 4px 0;
+      border: 1px solid var(--border);
+      background: rgba(148,163,184,.08);
+      border-radius: 5px;
+      color: #c4d2e1;
+      font-size: .76rem;
+    }
+
+    .detail-card {
+      padding: 25px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      height: 100%;
+    }
+
+    .detail-card i {
+      color: var(--accent);
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .status-note {
+      padding: 14px 18px;
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      border-radius: 5px;
+      font-size: .9rem;
+      color: #c7d9e7;
+    }
+
+    .project-section {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-panel {
+      padding: 50px 25px;
+      background: linear-gradient(135deg,#14263b,#0f1b2c);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+    }
+
+    footer {
+      background: #070c15;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--muted);
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+
+    @media(max-width:768px) {
+      .hero {
+        padding: 135px 0 75px;
+      }
+
+      .section {
+        padding: 65px 0;
+      }
+
+      .case-card {
+        padding: 23px;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-  <!-- Fixed Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-black shadow-lg fixed-top">
+  <!-- NAVIGATION -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand fw-bold fs-4 neon-text" href="../index.html">
-        NEURO<span class="text-cyan">BRIDGE</span> TECHNOLOGIES
+
+      <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
+        <img src="/logo-neurobridge-main.png" alt="NeuroBridge logo" class="me-2">
+        JOSEPH <span class="accent ms-1">OCHELEBE</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+      <button class="navbar-toggler" type="button"
+        data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false"
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto align-items-center">
-          <li class="nav-item"><a class="nav-link" href="../index.html">Back to Landing</a></li>
-          <li class="nav-item"><a class="nav-link" href="../index.html#projects">Portfolio</a></li>
-          <li class="nav-item"><a class="nav-link" href="../index.html#pitch">Pitch</a></li>
-          <li class="nav-item"><a class="nav-link" href="../index.html#tools">Tools</a></li>
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Featured Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#expertise">Expertise</a></li>
+          <li class="nav-item">
+            <a class="btn btn-outline-accent btn-sm" href="/#contact">Contact</a>
+          </li>
         </ul>
       </div>
+
     </div>
   </nav>
 
-  <!-- Dashboard Header -->
-  <header class="py-5 mt-5 text-center bg-gradient-hero">
-    <div class="container pt-5">
-      <h1 class="display-4 fw-bold glitch neon-text mb-3" data-text="Portfolio Dashboard">Portfolio Dashboard</h1>
-      <p class="lead fs-4 text-cyan">Deep Technical Breakdown: Quantum Algorithm Kernels • Hybrid Systems • Generative AI Augmentation</p>
-      <p class="fs-5 opacity-75">Live production MVPs demonstrating scalable quantum advantage potential</p>
+  <!-- HEADER -->
+  <header class="hero">
+    <div class="container">
+
+      <div class="eyebrow mb-3">
+        ENGINEERING PORTFOLIO
+      </div>
+
+      <h1>
+        Selected <span class="gradient-text">Engineering Projects</span>
+      </h1>
+
+      <p class="lead muted mt-4" style="max-width:850px;">
+        A technical overview of software platforms, AI infrastructure,
+        autonomous applications and security engineering initiatives
+        developed by Joseph Ochelebe.
+      </p>
+
+      <p class="muted">
+        Architecture · Implementation · Testing · System Integration
+      </p>
+
+      <div class="d-flex flex-wrap gap-3 mt-4">
+        <a href="#neurobridge" class="btn btn-accent">
+          NeuroBridge
+        </a>
+        <a href="#agentshield" class="btn btn-outline-accent">
+          AgentShield
+        </a>
+      </div>
+
     </div>
   </header>
 
-  <!-- Main Accordion Content -->
-  <section class="py-5">
+  <!-- PROJECT OVERVIEW -->
+  <section class="section">
     <div class="container">
-      <div class="accordion accordion-flush" id="projectsAccordion">
 
-        <!-- Project 1: Quantum Energy Harvest™ PRO -->
-        <div class="accordion-item bg-dark border-cyan mb-3 rounded overflow-hidden shimmer">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed bg-black text-cyan fw-bold fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEnergy" aria-expanded="false" aria-controls="collapseEnergy">
-              Quantum Energy Harvest™ PRO – Quantum ML Energy Optimization Simulator
-            </button>
-          </h2>
-          <div id="collapseEnergy" class="accordion-collapse collapse" data-bs-parent="#projectsAccordion">
-            <div class="accordion-body text-light">
-              <div class="row g-4">
-                <div class="col-lg-8">
-                  <h4 class="text-cyan mb-3">Purpose & Innovation</h4>
-                  <p class="mb-4">Enterprise-ready quantum simulation platform engineered to maximize ergotropy extraction and energy transfer efficiency in noisy quantum systems. Targets scalable, real-world clean energy harvesting applications in the NISQ era and beyond.</p>
-
-                  <h5 class="mt-4 text-cyan">Problems Framed & Solved</h5>
-                  <ul class="mb-4">
-                    <li>High noise and decoherence destroy quantum coherence needed for efficient energy processes</li>
-                    <li>Manual tuning of multi-dimensional Hamiltonians is computationally intractable</li>
-                    <li>Lack of realistic environmental data injection limits simulation fidelity</li>
-                  </ul>
-                  <p class="mb-4"><strong>Solutions Delivered:</strong> Auto-optimization of Hamiltonian parameters, topological protection via enhanced Su-Schrieffer-Heeger (SSH) model, generative real-world perturbation injection, and ergotropy-based quantitative metrics.</p>
-
-                  <h5 class="mt-4 text-cyan">Key Technical Differentiators</h5>
-                  <ul class="mb-4">
-                    <li>Topological edge-state resilience against disorder and perturbations</li>
-                    <li>Patent-ready analytics output with integrated IP tracking hooks</li>
-                    <li>Modular architecture allowing extension to grid-scale energy systems</li>
-                  </ul>
-                </div>
-
-                <div class="col-lg-4 d-flex flex-column justify-content-start align-items-center">
-                  <div class="d-flex align-items-center gap-3 mb-4 p-3 bg-dark-subtle rounded">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Google_Gemini_icon_2025.svg" alt="Google Gemini API" width="48" height="48" class="rounded shadow">
-                    <span class="text-cyan fw-bold fs-6">Gemini API Synergy</span>
-                  </div>
-                  <p class="small text-center mb-4">
-                    Real-world noisy environment generation<br>
-                    Intelligent parameter space exploration<br>
-                    Automated performance validation & report synthesis
-                  </p>
-                  <a href="https://quantumvibe-energy-harvest.onrender.com/" class="btn btn-cyan btn-lg w-100 mb-3" target="_blank" rel="noopener noreferrer">Launch Live MVP</a>
-                </div>
-              </div>
-
-              <hr class="my-5 border-cyan opacity-50">
-
-              <h5 class="text-cyan mb-3">Benchmarks & Strategic Alignment</h5>
-              <ul class="list-group list-group-flush bg-transparent small">
-                <li class="list-group-item bg-transparent text-light border-0">System stability: 99.99% under sustained high-frequency perturbations</li>
-                <li class="list-group-item bg-transparent text-light border-0">Ergotropy efficiency uplift: 30–48% vs classical optimization baselines (simulated)</li>
-                <li class="list-group-item bg-transparent text-light border-0">Alignment: NREL clean energy harvesting research priorities</li>
-                <li class="list-group-item bg-transparent text-light border-0">UN SDGs: 7 (Affordable & Clean Energy), 9 (Industry, Innovation & Infrastructure), 13 (Climate Action)</li>
-                <li class="list-group-item bg-transparent text-light border-0">PatentView API integration: Real-time IP opportunity detection & validation layer</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 2: NEUROBRIDGE | OMNI-TRINITY -->
-        <div class="accordion-item bg-dark border-cyan mb-3 rounded overflow-hidden shimmer">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed bg-black text-cyan fw-bold fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNeuro" aria-expanded="false" aria-controls="collapseNeuro">
-              NEUROBRIDGE | OMNI-TRINITY – Quantum-Neural Multi-Domain Sensing Platform
-            </button>
-          </h2>
-          <div id="collapseNeuro" class="accordion-collapse collapse" data-bs-parent="#projectsAccordion">
-            <div class="accordion-body text-light">
-              <!-- Full detailed content similar in structure to above – purpose, problems, differentiators, Gemini synergy, live link, benchmarks -->
-              <div class="row g-4">
-                <div class="col-lg-8">
-                  <h4 class="text-cyan mb-3">Purpose & Innovation</h4>
-                  <p class="mb-4">Unified real-time quantum-neural sensing dashboard integrating high-frequency autonomous data ingestion with multi-kernel quantum analytics for mission-critical monitoring in biotech, industrial IoT, security, and automotive domains.</p>
-
-                  <h5 class="mt-4 text-cyan">Problems Framed & Solved</h5>
-                  <ul class="mb-4">
-                    <li>Disparate sensor streams lack coherent quantum-level insight extraction</li>
-                    <li>Real-time anomaly detection fails under heterogeneous noisy inputs</li>
-                    <li>Enterprise-grade IP awareness is frequently overlooked in monitoring tools</li>
-                  </ul>
-                  <p class="mb-4"><strong>Solutions Delivered:</strong> Autonomous field ingestion engine, quantum multi-kernel fusion, real-time stream visualization, and embedded PatentView IP protection layer.</p>
-
-                  <h5 class="mt-4 text-cyan">Key Technical Differentiators</h5>
-                  <ul class="mb-4">
-                    <li>Proven 99.99% operational reliability under extreme stress testing</li>
-                    <li>Domain-agnostic modular kernel architecture</li>
-                    <li>Privacy-preserving quantum-neural hybrid processing</li>
-                  </ul>
-                </div>
-
-                <div class="col-lg-4 d-flex flex-column justify-content-start align-items-center">
-                  <div class="d-flex align-items-center gap-3 mb-4 p-3 bg-dark-subtle rounded">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Google_Gemini_icon_2025.svg" alt="Google Gemini API" width="48" height="48" class="rounded shadow">
-                    <span class="text-cyan fw-bold fs-6">Gemini API Synergy</span>
-                  </div>
-                  <p class="small text-center mb-4">
-                    Synthetic scenario generation for edge cases<br>
-                    Anomaly pattern recognition & explanation<br>
-                    Automated executive-level reporting & alerting
-                  </p>
-                  <a href="https://omni-present.onrender.com/" class="btn btn-cyan btn-lg w-100 mb-3" target="_blank" rel="noopener noreferrer">Launch Live MVP</a>
-                </div>
-              </div>
-
-              <hr class="my-5 border-cyan opacity-50">
-
-              <h5 class="text-cyan mb-3">Benchmarks & Strategic Alignment</h5>
-              <ul class="list-group list-group-flush bg-transparent small">
-                <li class="list-group-item bg-transparent text-light border-0">Uptime & reliability: 99.99% during continuous auto-fielding stress tests</li>
-                <li class="list-group-item bg-transparent text-light border-0">Analytics latency: Sub-50 ms for multi-domain kernel processing</li>
-                <li class="list-group-item bg-transparent text-light border-0">Alignment: SDG 9 (Industry, Innovation & Infrastructure)</li>
-                <li class="list-group-item bg-transparent text-light border-0">ESG: Enables sustainable monitoring & risk reduction in critical infrastructure</li>
-                <li class="list-group-item bg-transparent text-light border-0">PatentView API: Embedded real-time IP opportunity identification</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 3: QEPNS -->
-        <div class="accordion-item bg-dark border-cyan mb-3 rounded overflow-hidden shimmer">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed bg-black text-cyan fw-bold fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseQEPNS" aria-expanded="false" aria-controls="collapseQEPNS">
-              QEPNS – Privacy-Preserving Quantum-AI Diagnostic & Metrics Suite
-            </button>
-          </h2>
-          <div id="collapseQEPNS" class="accordion-collapse collapse" data-bs-parent="#projectsAccordion">
-            <div class="accordion-body text-light">
-              <!-- Full detailed content – similar structure -->
-              <p class="lead mb-4">Advanced diagnostic platform combining quantum kernel presets with privacy-first AI for waveform energy mapping, entropy/coherence analysis, uncertainty quantification, and synaptic quantum cloud tracking.</p>
-              <!-- ... complete sections as above pattern ... -->
-              <a href="https://qepns.onrender.com/" class="btn btn-cyan btn-lg w-100 mb-3" target="_blank" rel="noopener noreferrer">Launch Live MVP</a>
-              <!-- Benchmarks, SDGs, ESG, PatentView alignment -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 4: Quantum Bind Pro -->
-        <div class="accordion-item bg-dark border-cyan mb-3 rounded overflow-hidden shimmer">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed bg-black text-cyan fw-bold fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBind" aria-expanded="false" aria-controls="collapseBind">
-              Quantum Bind Pro – Quantum-Accelerated Molecular Binding & Drug Discovery Simulator
-            </button>
-          </h2>
-          <div id="collapseBind" class="accordion-collapse collapse" data-bs-parent="#projectsAccordion">
-            <div class="accordion-body text-light">
-              <!-- Full detailed content – similar structure -->
-              <p class="lead mb-4">Qubit-efficient VQE-based platform computing ground-state energies, ergotropy, topological molecular stability, and binding metrics to accelerate pharmaceutical lead optimization.</p>
-              <!-- ... complete sections ... -->
-              <a href="https://quantum-bind-pro.onrender.com/" class="btn btn-cyan btn-lg w-100 mb-3" target="_blank" rel="noopener noreferrer">Launch Live MVP</a>
-              <!-- Benchmarks, SDGs (3), ESG, PatentView -->
-            </div>
-          </div>
-        </div>
-
-        <!-- U-MIRK – Only Coming Soon section -->
-        <div class="accordion-item bg-dark border-cyan opacity-75 rounded overflow-hidden">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed bg-black text-cyan fw-bold fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUMIRK" aria-expanded="false" aria-controls="collapseUMIRK">
-              U-MIRK – Enterprise Quantum Research Planner & Custom Kernel Designer (Coming Soon)
-            </button>
-          </h2>
-          <div id="collapseUMIRK" class="accordion-collapse collapse" data-bs-parent="#projectsAccordion">
-            <div class="accordion-body text-center py-5">
-              <h4 class="text-cyan mb-4">Next-Generation Enterprise Quantum Research Suite</h4>
-              <p class="lead mb-4">Collaborative platform purpose-built for research institutions and enterprises to visually design, simulate, benchmark, and validate custom quantum algorithm kernels and full research pipelines at scale.</p>
-              <div class="row justify-content-center mb-4">
-                <div class="col-md-8">
-                  <ul class="list-unstyled fs-5">
-                    <li>• Drag-and-drop visual kernel composer</li>
-                    <li>• Institutional multi-user collaboration & version control</li>
-                    <li>• Automated benchmarking against quantum hardware/cloud providers</li>
-                    <li>• Advanced patent & publication readiness toolkit</li>
-                    <li>• Seamless integration with IBM Qiskit, Google Cirq, AWS Braket, etc.</li>
-                  </ul>
-                </div>
-              </div>
-              <p class="fw-bold fs-5 text-cyan">Development actively in progress – Public beta targeted Q2–Q3 2026</p>
-            </div>
-          </div>
-        </div>
-
-      </div> <!-- end accordion -->
-
-      <div class="text-center mt-5 pt-4">
-        <a href="../index.html" class="btn btn-outline-cyan btn-lg px-5 py-3 shadow">
-          ← Return to Main Landing Page
-        </a>
+      <div class="text-center mb-5">
+        <div class="eyebrow mb-3">FEATURED ENGINEERING WORK</div>
+        <h2 class="section-title">Two Core Engineering Initiatives</h2>
+        <p class="muted mx-auto" style="max-width:700px;">
+          Different problem domains, connected by a common engineering
+          approach: structured architecture, practical implementation
+          and evidence-based validation.
+        </p>
       </div>
+
+      <div class="row g-4">
+
+        <div class="col-lg-6">
+          <div class="case-card">
+
+            <div class="case-icon mb-4">
+              <i class="fas fa-bolt"></i>
+            </div>
+
+            <div class="case-label">FLAGSHIP PROJECT 01</div>
+
+            <h3 class="mt-2">NeuroBridge Energy Intelligence</h3>
+
+            <p class="muted">
+              Autonomous energy intelligence and simulation platform
+              integrating backend services, distributed processing,
+              simulation tools and monitoring.
+            </p>
+
+            <a href="#neurobridge" class="btn btn-outline-accent mt-3">
+              Explore Case Study
+              <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="case-card">
+
+            <div class="case-icon mb-4">
+              <i class="fas fa-shield-halved"></i>
+            </div>
+
+            <div class="case-label">FLAGSHIP PROJECT 02</div>
+
+            <h3 class="mt-2">AgentShield (APEX)</h3>
+
+            <p class="muted">
+              AI agent security exposure and attack-path analysis platform
+              focused on permissions, security boundaries and explainable
+              impact analysis.
+            </p>
+
+            <a href="#agentshield" class="btn btn-outline-accent mt-3">
+              Explore Case Study
+              <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-black py-5 border-top border-cyan">
+  <!-- NEUROBRIDGE CASE STUDY -->
+  <section id="neurobridge" class="section section-dark project-section">
     <div class="container">
-      <div class="row gy-4">
-        <div class="col-md-4">
-          <h5 class="text-cyan">NEUROBRIDGE TECHNOLOGIES LTD</h5>
-          <p>Abuja, Nigeria<br>Company Registration No: 8908368</p>
-          <p class="small opacity-75">Engineering the next era of quantum kernels, hybrid quantum-AI systems, and scalable deep-tech platforms.</p>
+
+      <div class="eyebrow mb-3">CASE STUDY 01 · ENERGY INTELLIGENCE</div>
+
+      <h2 class="section-title mb-3">
+        NeuroBridge Energy Intelligence
+      </h2>
+
+      <p class="lead muted mb-5" style="max-width:850px;">
+        Engineering an integrated software platform for energy-system
+        intelligence, simulation, distributed computation and monitoring.
+      </p>
+
+      <div class="row g-5">
+
+        <div class="col-lg-8">
+
+          <h4 class="accent mb-3">Engineering Objective</h4>
+
+          <p class="muted">
+            Energy systems require multiple layers of computation,
+            simulation, data exchange and operational monitoring.
+            NeuroBridge explores how these components can be integrated
+            into an intelligent software platform.
+          </p>
+
+          <h4 class="accent mt-5 mb-3">System Architecture</h4>
+
+          <p class="muted">
+            The platform uses a Python-based backend architecture
+            supported by asynchronous processing and energy simulation
+            integrations.
+          </p>
+
+          <div class="detail-card mb-4">
+            <h5 class="accent">Conceptual System Flow</h5>
+
+            <div class="row g-3 text-center mt-2">
+
+              <div class="col-md-3">
+                <div class="p-3 rounded" style="background:var(--surface2);">
+                  <i class="fas fa-database"></i>
+                  <p class="small mb-0">Data & Inputs</p>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="p-3 rounded" style="background:var(--surface2);">
+                  <i class="fas fa-server"></i>
+                  <p class="small mb-0">Backend Services</p>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="p-3 rounded" style="background:var(--surface2);">
+                  <i class="fas fa-microchip"></i>
+                  <p class="small mb-0">Simulation & Processing</p>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="p-3 rounded" style="background:var(--surface2);">
+                  <i class="fas fa-chart-line"></i>
+                  <p class="small mb-0">Monitoring & Analysis</p>
+                </div>
+              </div>
+
+            </div>
+
+            <p class="muted small mt-3 mb-0">
+              Conceptual architecture overview; individual integrations
+              and operational boundaries should be evaluated against the
+              implementation documentation.
+            </p>
+          </div>
+
+          <h4 class="accent mt-5 mb-3">Key Engineering Components</h4>
+
+          <div class="detail-card mb-3">
+            <h5>Backend Application Architecture</h5>
+            <p class="muted mb-0">
+              Python and FastAPI services provide the application
+              foundation for system interfaces and backend operations.
+            </p>
+          </div>
+
+          <div class="detail-card mb-3">
+            <h5>Distributed Task Processing</h5>
+            <p class="muted mb-0">
+              Redis and Celery support asynchronous task execution
+              and background processing workflows.
+            </p>
+          </div>
+
+          <div class="detail-card mb-3">
+            <h5>Energy Simulation Integration</h5>
+            <p class="muted mb-0">
+              OpenDSS, GridLAB-D and HELICS form part of the
+              energy-system simulation and integration environment.
+            </p>
+          </div>
+
+          <div class="detail-card">
+            <h5>Monitoring and Performance Instrumentation</h5>
+            <p class="muted mb-0">
+              Prometheus supports monitoring and performance
+              instrumentation within the platform.
+            </p>
+          </div>
+
         </div>
-        <div class="col-md-4">
-          <h5 class="text-cyan">Contact</h5>
-          <p>
-            <a href="mailto:neurobridgetechnologiesltd@gmail.com" class="text-light text-decoration-none">
-              neurobridgetechnologiesltd@gmail.com
+
+        <div class="col-lg-4">
+
+          <div class="case-card mb-4">
+
+            <div class="case-label">TECHNOLOGY STACK</div>
+
+            <h5 class="mt-3">Core Technologies</h5>
+
+            <div class="mt-3">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">FastAPI</span>
+              <span class="tech-tag">Redis</span>
+              <span class="tech-tag">Celery</span>
+              <span class="tech-tag">OpenDSS</span>
+              <span class="tech-tag">GridLAB-D</span>
+              <span class="tech-tag">HELICS</span>
+              <span class="tech-tag">Prometheus</span>
+              <span class="tech-tag">OCI</span>
+            </div>
+
+          </div>
+
+          <div class="case-card mb-4">
+
+            <div class="case-label">ENGINEERING STATUS</div>
+
+            <h5 class="mt-3">Validation Context</h5>
+
+            <p class="muted small">
+              The project has a reported OCI validation milestone.
+              Hardware and field validation remain separate requirements.
+            </p>
+
+            <div class="status-note mt-3">
+              Software and infrastructure validation reported.
+              Field validation pending.
+            </div>
+
+          </div>
+
+          <div class="case-card">
+
+            <div class="case-label">PROJECT RESOURCE</div>
+
+            <h5 class="mt-3">Explore NeuroBridge</h5>
+
+            <p class="muted small">
+              Visit the project portfolio for additional context.
+            </p>
+
+            <a href="https://neurobridge-portfolio-website.netlify.app/"
+              target="_blank" rel="noopener noreferrer"
+              class="btn btn-accent w-100 mb-3">
+              <i class="fas fa-external-link-alt me-2"></i>Portfolio Website
             </a>
+
+            <a href="https://github.com/Joeches/neurobridgeenergyinteligence"
+              target="_blank" rel="noopener noreferrer"
+              class="btn btn-outline-accent w-100">
+              <i class="fab fa-github me-2"></i>GitHub Repository
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AGENTSHIELD CASE STUDY -->
+  <section id="agentshield" class="section project-section">
+    <div class="container">
+
+      <div class="eyebrow mb-3">CASE STUDY 02 · AI SECURITY ENGINEERING</div>
+
+      <h2 class="section-title mb-3">AgentShield (APEX)</h2>
+
+      <p class="lead muted mb-5" style="max-width:850px;">
+        Agent Path & Exposure Engine: an AI agent security analysis
+        platform designed to examine permission exposure, potential
+        attack paths and security impact.
+      </p>
+
+      <div class="row g-5">
+
+        <div class="col-lg-8">
+
+          <h4 class="accent mb-3">Problem Context</h4>
+
+          <p class="muted">
+            AI agents can interact with tools, services, data sources
+            and external systems. Their permissions and execution paths
+            introduce security considerations that require structured
+            analysis and clear evidence.
           </p>
-          <p>
-            WhatsApp: <a href="https://wa.me/2348155935110" class="text-light text-decoration-none">+234 815 593 5110</a>
+
+          <p class="muted">
+            AgentShield explores these concerns through an application
+            that analyzes agent exposure and presents potential
+            security consequences in an understandable format.
+          </p>
+
+          <h4 class="accent mt-5 mb-3">Engineering Architecture</h4>
+
+          <div class="detail-card mb-4">
+
+            <h5 class="accent">Security Analysis Pipeline</h5>
+
+            <ol class="muted mt-3">
+              <li>Authenticated principal identification.</li>
+              <li>Authorization policy evaluation.</li>
+              <li>Tenant context establishment.</li>
+              <li>Authorized dataset construction.</li>
+              <li>Input validation.</li>
+              <li>APEX security exposure analysis.</li>
+              <li>Result authorization and serialization.</li>
+            </ol>
+
+            <p class="small muted mb-0">
+              APEX performs security analysis. It is not itself
+              the authorization enforcement layer.
+            </p>
+
+          </div>
+
+          <h4 class="accent mt-5 mb-3">Core Engineering Capabilities</h4>
+
+          <div class="detail-card mb-3">
+            <h5>Agent Exposure Analysis</h5>
+            <p class="muted mb-0">
+              Analyze agent capabilities and permission relationships
+              to identify potential exposure scenarios.
+            </p>
+          </div>
+
+          <div class="detail-card mb-3">
+            <h5>Attack-Path Analysis</h5>
+            <p class="muted mb-0">
+              Model relationships and paths that may connect
+              permissions, resources and potential security impacts.
+            </p>
+          </div>
+
+          <div class="detail-card mb-3">
+            <h5>Authorization-Aware Architecture</h5>
+            <p class="muted mb-0">
+              Separate identity, authorization, tenant context,
+              dataset construction and analysis responsibilities.
+            </p>
+          </div>
+
+          <div class="detail-card">
+            <h5>Security Reporting</h5>
+            <p class="muted mb-0">
+              Translate technical analysis into structured
+              findings and reports for engineering and security teams.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+          <div class="case-card mb-4">
+
+            <div class="case-label">TECHNOLOGY STACK</div>
+
+            <h5 class="mt-3">Core Technologies</h5>
+
+            <div class="mt-3">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">FastAPI</span>
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">Security Architecture</span>
+              <span class="tech-tag">AI Systems</span>
+            </div>
+
+          </div>
+
+          <div class="case-card mb-4">
+
+            <div class="case-label">ENGINEERING FOCUS</div>
+
+            <h5 class="mt-3">Key Design Principles</h5>
+
+            <ul class="muted small">
+              <li>Separation of authorization and analysis.</li>
+              <li>Explicit security boundaries.</li>
+              <li>Evidence-based findings.</li>
+              <li>Controlled graph traversal.</li>
+              <li>Structured output and reporting.</li>
+            </ul>
+
+          </div>
+
+          <div class="case-card">
+
+            <div class="case-label">LIVE DEMONSTRATION</div>
+
+            <h5 class="mt-3">Explore AgentShield</h5>
+
+            <p class="muted small">
+              View the interactive demonstration of the platform.
+            </p>
+
+            <a href="https://demo-agentshield.vercel.app/integrations"
+              target="_blank" rel="noopener noreferrer"
+              class="btn btn-accent w-100 mb-3">
+              <i class="fas fa-play me-2"></i>Launch Demo
+            </a>
+
+            <a href="https://github.com/Joeches"
+              target="_blank" rel="noopener noreferrer"
+              class="btn btn-outline-accent w-100">
+              <i class="fab fa-github me-2"></i>GitHub Profile
+            </a>
+
+            <p class="small muted mt-3 mb-0">
+              Demonstration availability does not imply production
+              certification or independent security verification.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ADDITIONAL WORK -->
+  <section class="section section-dark">
+    <div class="container">
+
+      <div class="eyebrow mb-3">ADDITIONAL TECHNICAL WORK</div>
+
+      <h2 class="section-title mb-3">Other Engineering Interests</h2>
+
+      <p class="muted mb-5" style="max-width:750px;">
+        Additional projects and technical explorations that complement
+        my primary work in AI systems, backend engineering and autonomous applications.
+      </p>
+
+      <div class="row g-4">
+
+        <div class="col-md-6 col-lg-4">
+
+          <div class="detail-card">
+
+            <i class="fas fa-atom"></i>
+
+            <h5>Quantum Bind Pro</h5>
+
+            <p class="muted small">
+              Quantum computing and molecular simulation application
+              exploring variational quantum eigensolver workflows.
+            </p>
+
+            <a href="https://quantum-bind-pro.onrender.com/"
+              target="_blank" rel="noopener noreferrer"
+              class="btn btn-outline-accent btn-sm">
+              View Application
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+
+          <div class="detail-card">
+
+            <i class="fas fa-microchip"></i>
+
+            <h5>Robotics & Simulation</h5>
+
+            <p class="muted small">
+              Engineering interests in robotics applications,
+              simulation environments and intelligent automation.
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+
+          <div class="detail-card">
+
+            <i class="fas fa-laptop-code"></i>
+
+            <h5>Full-Stack Applications</h5>
+
+            <p class="muted small">
+              Web applications, API integrations, backend services
+              and responsive software interfaces.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ENGINEERING APPROACH -->
+  <section class="section">
+    <div class="container">
+
+      <div class="text-center mb-5">
+
+        <div class="eyebrow mb-3">ENGINEERING METHODOLOGY</div>
+
+        <h2 class="section-title">How I Approach Engineering</h2>
+
+      </div>
+
+      <div class="row g-4">
+
+        <div class="col-md-6 col-lg-3">
+          <div class="detail-card">
+            <i class="fas fa-sitemap"></i>
+            <h5>01. Architecture</h5>
+            <p class="muted small">
+              Understand requirements, establish system boundaries
+              and design maintainable components.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="detail-card">
+            <i class="fas fa-code"></i>
+            <h5>02. Implementation</h5>
+            <p class="muted small">
+              Build application components, integrations,
+              services and interfaces.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="detail-card">
+            <i class="fas fa-vial"></i>
+            <h5>03. Validation</h5>
+            <p class="muted small">
+              Apply automated tests, integration checks
+              and evidence-based verification.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="detail-card">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <h5>04. Delivery</h5>
+            <p class="muted small">
+              Document, deploy, monitor and iteratively
+              improve software systems.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section section-dark" id="contact">
+    <div class="container">
+
+      <div class="contact-panel text-center">
+
+        <div class="eyebrow mb-3">PROFESSIONAL CONNECTIONS</div>
+
+        <h2 class="section-title mb-3">
+          Interested in working together?
+        </h2>
+
+        <p class="muted mx-auto mb-4" style="max-width:650px;">
+          I welcome discussions around software engineering,
+          AI infrastructure, backend platforms, security engineering
+          and technically challenging projects.
+        </p>
+
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+
+          <a href="https://www.linkedin.com/in/joseph-ochelebe-15a09588"
+            target="_blank" rel="noopener noreferrer"
+            class="btn btn-accent">
+            <i class="fab fa-linkedin me-2"></i>LinkedIn
+          </a>
+
+          <a href="https://github.com/Joeches"
+            target="_blank" rel="noopener noreferrer"
+            class="btn btn-outline-accent">
+            <i class="fab fa-github me-2"></i>GitHub
+          </a>
+
+          <a href="https://wa.me/2348155935110"
+            target="_blank" rel="noopener noreferrer"
+            class="btn btn-outline-light">
+            <i class="fab fa-whatsapp me-2"></i>WhatsApp
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-4">
+    <div class="container">
+
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+
+        <div>
+          <strong>Joseph Ochelebe</strong>
+          <p class="muted small mb-0">
+            Software Engineer · AI & Autonomous Systems Architect
           </p>
         </div>
-        <div class="col-md-4">
-          <h5 class="text-cyan">Quick Links</h5>
-          <ul class="list-unstyled">
-            <li><a href="../index.html" class="text-light text-decoration-none">Landing Page</a></li>
-            <li><a href="https://wa.me/2348163399026?text=Dashboard%20enquiry%20from%20portfolio" class="text-light text-decoration-none">Direct Chat with CTO</a></li>
-          </ul>
+
+        <div class="d-flex gap-3">
+          <a href="https://www.linkedin.com/in/joseph-ochelebe-15a09588"
+            target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </a>
+
+          <a href="https://github.com/Joeches"
+            target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+
+          <a href="/">
+            Homepage
+          </a>
         </div>
+
       </div>
-      <div class="text-center mt-5 pt-3 border-top border-secondary small">
-        © 2026 NeuroBridge Technologies Ltd. All rights reserved.
-      </div>
+
+      <hr style="border-color:var(--border);">
+
+      <p class="text-center muted small mb-0">
+        © <span id="current-year">2026</span> Joseph Ochelebe.
+        All rights reserved.
+      </p>
+
     </div>
   </footer>
 
-  <!-- Floating WhatsApp CTA -->
-  <a href="https://wa.me/2348155935110?text=Hello%20Joseph%2C%20reviewing%20detailed%20portfolio%20dashboard"
-     class="btn btn-success rounded-circle shadow position-fixed bottom-0 end-0 m-4 d-flex align-items-center justify-content-center"
-     style="width: 70px; height: 70px; z-index: 1000;">
-    <i class="fab fa-whatsapp fa-2x"></i>
-  </a>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script src="/statics/app.js"></script>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script src="../statics/app.js"></script>
-
-  <!-- Service Worker Registration -->
   <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('../statics/sw.js')
-          .then(reg => console.log('Service Worker registered with scope:', reg.scope))
-          .catch(err => console.error('Service Worker registration failed:', err));
-      });
-    }
+    document.getElementById("current-year").textContent =
+      new Date().getFullYear();
   </script>
+
 </body>
 </html>
