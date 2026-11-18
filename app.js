@@ -1,248 +1,468 @@
-// statics/app.js
-// NeuroBridge Quantum Portfolio – Professional Vanilla JS Enhancements 2026 v2
-// Optimized for performance, accessibility, SEO signals & futuristic feel
-// Features: Smooth scroll, quantum particles, glitch trigger, shimmer control, schema markup
-// Author: Joseph Ochelebe – Founder & CTO, NeuroBridge Technologies Ltd
+
+/* ==========================================================================
+   JOSEPH OCHELEBE — ENGINEERING PORTFOLIO
+   Vanilla JavaScript enhancements
+   Features:
+   - Accessible smooth scrolling
+   - Performance-conscious hero particle animation
+   - Reduced-motion support
+   - Visibility-aware animation
+   - Glitch visibility handling
+   - Accordion shimmer cleanup
+   - Online/offline awareness
+
+   ========================================================================== */
 
 (function () {
-  'use strict';
+  "use strict";
 
-  // ================================
-  // Utility Helpers
-  // ================================
+  /* ==========================================================================
+     1. CONFIGURATION AND UTILITIES
+     ========================================================================== */
+
+  const CONFIG = {
+    particleCount: 38,
+    particleSpeed: 0.35,
+    particleMaxSize: 2,
+    particleOpacity: 0.45,
+    resizeDebounce: 180
+  };
+
+  const prefersReducedMotion = window.matchMedia
+    ? window.matchMedia("(prefers-reduced-motion: reduce)")
+    : { matches: false };
+
   const utils = {
     debounce(fn, wait = 100) {
       let timeout;
+
       return (...args) => {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => fn(...args), wait);
-      };
-    },
-    throttle(fn, limit = 100) {
-      let inThrottle;
-      return (...args) => {
-        if (!inThrottle) {
+        window.clearTimeout(timeout);
+
+        timeout = window.setTimeout(() => {
           fn(...args);
-          inThrottle = true;
-          setTimeout(() => (inThrottle = false), limit);
-        }
+        }, wait);
       };
     },
-    isElementInViewport(el) {
-      if (!el) return false;
-      const rect = el.getBoundingClientRect();
+
+    isVisible(element) {
+      if (!element) return false;
+
+      const rect = element.getBoundingClientRect();
+
       return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        rect.width > 0 &&
+        rect.height > 0 &&
+        rect.bottom > 0 &&
+        rect.right > 0 &&
+        rect.top < window.innerHeight &&
+        rect.left < window.innerWidth
       );
     }
   };
 
-  // ================================
-  // 1. Structured Data for SEO (Person + PortfolioItem schema)
-  // Helps Google understand your expertise & projects
-  // ================================
-  function injectSchemaMarkup() {
-    const schema = {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Joseph Ochelebe",
-      "jobTitle": "Founder & CTO | Senior Quantum-Kernel Systems Designer & Generative AI-Quantum Integrator",
-      "url": window.location.href,
-      "sameAs": [
-        "www.linkedin.com/in/joseph-ochelebe-15a09588", // ← replace
-        "https://x.com/[your-x-handle]" // ← optional
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Abuja",
-        "addressCountry": "NG"
-      },
-      "worksFor": {
-        "@type": "Organization",
-        "name": "NeuroBridge Technologies Ltd",
-        "url": "https://neurobridgetechnology.netlify.app//",
-        "logo": "/icons/logo-neurobridge.png","
-      },
-      "knowsAbout": [
-        "Quantum Computing", "Quantum Algorithms", "Generative AI", "VQE Simulation", "Topological Quantum Systems", "Google Gemini API"
-      ],
-      "hasCredential": {
-        "@type": "EducationalOccupationalCredential",
-        "name": "11+ Years Self-Directed Deep-Tech Engineering",
-        "description": "Builder of 4+ live quantum simulation MVPs with generative AI synergies"
-      }
-    };
+  /* ==========================================================================
+     2. ACCESSIBLE SMOOTH SCROLLING
+     ========================================================================== */
 
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(schema, null, 2);
-    document.head.appendChild(script);
-
-    console.log('%cSEO Schema Injected – Person + WorksFor + KnowsAbout', 'color:#00f0ff; font-weight:bold;');
-  }
-
-  // ================================
-  // 2. Smooth Scrolling (with polyfill fallback)
-  // ================================
   function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', e => {
-        e.preventDefault();
-        const targetId = anchor.getAttribute('href');
-        const target = document.querySelector(targetId);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const anchors = document.querySelectorAll('a[href^="#"]');
+
+    anchors.forEach((anchor) => {
+      anchor.addEventListener("click", (event) => {
+        const href = anchor.getAttribute("href");
+
+        if (!href || href === "#") return;
+
+        let target;
+
+        try {
+          target = document.querySelector(href);
+        } catch {
+          return;
         }
+
+        if (!target) return;
+
+        // Preserve normal browser behavior for modified clicks.
+        if (
+          event.ctrlKey ||
+          event.metaKey ||
+          event.shiftKey ||
+          event.altKey ||
+          event.button !== 0
+        ) {
+          return;
+        }
+
+        event.preventDefault();
+
+        target.scrollIntoView({
+          behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+          block: "start"
+        });
+
+        // Update the URL without causing an additional page jump.
+        if (history.replaceState) {
+          history.replaceState(null, "", href);
+        }
+
+        // Move keyboard focus to the destination when possible.
+        if (!target.hasAttribute("tabindex")) {
+          target.setAttribute("tabindex", "-1");
+        }
+
+        target.focus({ preventScroll: true });
       });
     });
   }
 
-  // ================================
-  // 3. Quantum Particle Field (Hero only – performance optimized)
-  // ================================
+  /* ==========================================================================
+     3. HERO PARTICLE FIELD
+     ========================================================================== */
+
   function initQuantumParticles() {
-    const hero = document.querySelector('.bg-gradient-hero');
+    const hero = document.querySelector(".bg-gradient-hero");
+
     if (!hero) return;
 
-    const canvas = document.createElement('canvas');
-    canvas.style.cssText = 'position:absolute;inset:0;pointer-events:none;z-index:0;';
-    hero.style.position = 'relative';
-    hero.prepend(canvas);
+    // Avoid decorative animation for visitors who request reduced motion.
+    if (prefersReducedMotion.matches) return;
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) {
-      console.warn('Canvas not supported – skipping particle field');
-      return;
+    // Avoid unnecessary work when the browser does not support canvas.
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    if (!ctx) return;
+
+    canvas.setAttribute("aria-hidden", "true");
+
+    canvas.style.cssText = [
+      "position:absolute",
+      "inset:0",
+      "width:100%",
+      "height:100%",
+      "pointer-events:none",
+      "z-index:0",
+      "opacity:0.45"
+    ].join(";");
+
+    // Ensure hero content remains above the decorative canvas.
+    const originalPosition = window.getComputedStyle(hero).position;
+
+    if (originalPosition === "static") {
+      hero.style.position = "relative";
     }
 
-    let w, h, particles = [];
-    const particleCount = 50; // balanced for mobile/desktop
+    hero.prepend(canvas);
+
+    Array.from(hero.children).forEach((child) => {
+      if (child === canvas) return;
+
+      child.style.position =
+        child.style.position || "relative";
+
+      child.style.zIndex =
+        child.style.zIndex || "1";
+    });
+
+    let width = 0;
+    let height = 0;
+    let animationFrame = null;
+    let particles = [];
+
+    let isPageVisible = !document.hidden;
+    let isHeroVisible = false;
+    let isRunning = false;
+
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
 
     function resize() {
-      w = canvas.width = hero.offsetWidth;
-      h = canvas.height = hero.offsetHeight;
+      const rect = hero.getBoundingClientRect();
+
+      width = Math.max(1, rect.width);
+      height = Math.max(1, rect.height);
+
+      canvas.width = Math.round(width * pixelRatio);
+      canvas.height = Math.round(height * pixelRatio);
+
+      ctx.setTransform(
+        pixelRatio,
+        0,
+        0,
+        pixelRatio,
+        0,
+        0
+      );
+
+      particles.forEach((particle) => {
+        particle.x = Math.min(particle.x, width);
+        particle.y = Math.min(particle.y, height);
+      });
     }
 
     class QuantumParticle {
       constructor() {
         this.reset();
       }
+
       reset() {
-        this.x = Math.random() * w;
-        this.y = Math.random() * h;
-        this.size = Math.random() * 2.2 + 0.8;
-        this.vx = (Math.random() - 0.5) * 0.4;
-        this.vy = (Math.random() - 0.5) * 0.4;
-        this.opacity = Math.random() * 0.5 + 0.15;
-        this.hue = 180 + Math.random() * 80; // cyan-blue range
-        this.life = 1;
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+
+        this.size =
+          Math.random() * CONFIG.particleMaxSize + 0.5;
+
+        this.vx =
+          (Math.random() - 0.5) * CONFIG.particleSpeed;
+
+        this.vy =
+          (Math.random() - 0.5) * CONFIG.particleSpeed;
+
+        this.opacity =
+          Math.random() * CONFIG.particleOpacity + 0.1;
+
+        this.hue =
+          180 + Math.random() * 55;
+
+        this.life = 0.5 + Math.random() * 0.5;
       }
+
       update() {
         this.x += this.vx;
         this.y += this.vy;
-        this.life -= 0.0012;
 
-        if (this.x < 0 || this.x > w) this.vx *= -1;
-        if (this.y < 0 || this.y > h) this.vy *= -1;
+        if (this.x < 0 || this.x > width) {
+          this.vx *= -1;
+        }
 
-        if (this.life <= 0) this.reset();
+        if (this.y < 0 || this.y > height) {
+          this.vy *= -1;
+        }
+
+        this.life -= 0.0005;
+
+        if (this.life <= 0) {
+          this.reset();
+        }
       }
+
       draw() {
         ctx.save();
+
         ctx.globalAlpha = this.opacity * this.life;
-        ctx.shadowBlur = 12;
-        ctx.shadowColor = `hsla(${this.hue}, 100%, 70%, 0.7)`;
-        ctx.fillStyle = `hsla(${this.hue}, 100%, 70%, ${this.opacity})`;
+
+        ctx.fillStyle =
+          `hsla(${this.hue}, 90%, 70%, 1)`;
+
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+
+        ctx.arc(
+          this.x,
+          this.y,
+          this.size,
+          0,
+          Math.PI * 2
+        );
+
         ctx.fill();
+
         ctx.restore();
       }
     }
 
-    function animate() {
-      ctx.clearRect(0, 0, w, h);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
+    function drawParticles() {
+      ctx.clearRect(0, 0, width, height);
+
+      particles.forEach((particle) => {
+        particle.update();
+        particle.draw();
       });
-      requestAnimationFrame(animate);
     }
 
-    window.addEventListener('resize', utils.debounce(resize, 200));
+    function animate() {
+      if (!isRunning) return;
+
+      drawParticles();
+
+      animationFrame = window.requestAnimationFrame(animate);
+    }
+
+    function startAnimation() {
+      if (isRunning) return;
+
+      if (!isPageVisible || !isHeroVisible) return;
+
+      isRunning = true;
+      animationFrame = window.requestAnimationFrame(animate);
+    }
+
+    function stopAnimation() {
+      isRunning = false;
+
+      if (animationFrame !== null) {
+        window.cancelAnimationFrame(animationFrame);
+        animationFrame = null;
+      }
+    }
+
+    function updateAnimationState() {
+      if (isPageVisible && isHeroVisible) {
+        startAnimation();
+      } else {
+        stopAnimation();
+      }
+    }
+
     resize();
 
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new QuantumParticle());
-    }
-
-    animate();
-  }
-
-  // ================================
-  // 4. Glitch & Visibility Trigger
-  // ================================
-  function initGlitchTriggers() {
-    const glitchEls = document.querySelectorAll('.glitch');
-    if (!glitchEls.length) return;
-
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          entry.target.classList.toggle('glitch-active', entry.isIntersecting);
-        });
-      },
-      { threshold: 0.4, rootMargin: '0px 0px -10% 0px' }
+    particles = Array.from(
+      { length: CONFIG.particleCount },
+      () => new QuantumParticle()
     );
 
-    glitchEls.forEach(el => observer.observe(el));
+    // Detect whether the hero is visible before animating.
+    if ("IntersectionObserver" in window) {
+      const heroObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            isHeroVisible = entry.isIntersecting;
+          });
+
+          updateAnimationState();
+        },
+        { threshold: 0.05 }
+      );
+
+      heroObserver.observe(hero);
+    } else {
+      isHeroVisible = utils.isVisible(hero);
+    }
+
+    // Pause the animation when the browser tab is hidden.
+    document.addEventListener("visibilitychange", () => {
+      isPageVisible = !document.hidden;
+      updateAnimationState();
+    });
+
+    // Respond to browser resizing.
+    window.addEventListener(
+      "resize",
+      utils.debounce(resize, CONFIG.resizeDebounce),
+      { passive: true }
+    );
+
+    // Monitor layout changes when supported.
+    if ("ResizeObserver" in window) {
+      const resizeObserver = new ResizeObserver(
+        utils.debounce(resize, CONFIG.resizeDebounce)
+      );
+
+      resizeObserver.observe(hero);
+    }
+
+    updateAnimationState();
   }
 
-  // ================================
-  // 5. Shimmer Control for Accordion (toggle on expand)
-  // ================================
+  /* ==========================================================================
+     4. GLITCH VISIBILITY HANDLING
+     ========================================================================== */
+
+  function initGlitchTriggers() {
+    const glitchElements = document.querySelectorAll(".glitch");
+
+    if (!glitchElements.length) return;
+
+    if (prefersReducedMotion.matches) {
+      glitchElements.forEach((element) => {
+        element.classList.remove("glitch-active");
+      });
+
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle(
+            "glitch-active",
+            entry.isIntersecting
+          );
+        });
+      },
+      {
+        threshold: 0.4,
+        rootMargin: "0px 0px -10% 0px"
+      }
+    );
+
+    glitchElements.forEach((element) => {
+      observer.observe(element);
+    });
+  }
+
+  /* ==========================================================================
+     5. ACCORDION SHIMMER CLEANUP
+     ========================================================================== */
+
   function initShimmerControl() {
-    const accordions = document.querySelectorAll('.accordion-button');
-    accordions.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.closest('.accordion-item');
-        if (item) {
-          // Remove shimmer after first expand (to simulate "loaded")
-          setTimeout(() => {
-            item.classList.remove('shimmer');
-          }, 800);
-        }
+    const accordionButtons = document.querySelectorAll(
+      ".accordion-button"
+    );
+
+    accordionButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const item = button.closest(".accordion-item");
+
+        if (!item) return;
+
+        // Stop the shimmer after the accordion interaction.
+        window.setTimeout(() => {
+          item.classList.remove("shimmer");
+        }, 800);
       });
     });
   }
 
-  // ================================
-  // Initialization
-  // ================================
-  function init() {
-    console.log(
-      '%cNEUROBRIDGE TECHNOLOGIES LTD – Quantum Portfolio Loaded\n' +
-      '%cJoseph Ochelebe • Founder & CTO • Abuja, Nigeria\n' +
-      'Live Quantum MVPs • Generative AI Synergies • Patent-Aware Kernels\n' +
-      'https://wa.me/2348155935110',
-      'font-size:16px;font-weight:bold;color:#00f0ff;text-shadow:0 0 10px #00f0ff;',
-      'color:#ff00aa;'
-    );
+  /* ==========================================================================
+     6. NETWORK STATUS AWARENESS
+     ========================================================================== */
 
-    injectSchemaMarkup();
+  function initNetworkAwareness() {
+    window.addEventListener("offline", () => {
+      console.warn(
+        "Network connection unavailable. Some external resources may not load."
+      );
+    });
+
+    window.addEventListener("online", () => {
+      console.info("Network connection restored.");
+    });
+  }
+
+  /* ==========================================================================
+     7. INITIALIZATION
+     ========================================================================== */
+
+  function init() {
     initSmoothScroll();
     initQuantumParticles();
     initGlitchTriggers();
     initShimmerControl();
+    initNetworkAwareness();
 
-    // Optional: Offline awareness
-    window.addEventListener('offline', () => {
-      console.warn('Offline mode detected – cached assets in use');
-    });
+    console.info(
+      "Engineering portfolio initialized successfully."
+    );
   }
 
-  document.addEventListener('DOMContentLoaded', init);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init, {
+      once: true
+    });
+  } else {
+    init();
+  }
 })();
